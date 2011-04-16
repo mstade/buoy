@@ -1,11 +1,8 @@
 package se.stade.buoy.dependencies
 {
-	import flash.utils.getDefinitionByName;
-	
 	import se.stade.daffodil.Reflect;
-	import se.stade.daffodil.Type;
+	import se.stade.daffodil.define;
 	import se.stade.daffodil.methods.Method;
-	import se.stade.daffodil.methods.Parameter;
 	import se.stade.daffodil.types.QualifiedType;
 	
 	public class Factory implements Dependency
@@ -36,21 +33,21 @@ package se.stade.buoy.dependencies
 		private var qualifiedType:QualifiedType;
 		public function set type(value:Class):void
 		{
-			qualifiedType = Reflect.types.on(value)[0];
+			qualifiedType = Reflect.first.type.on(value);
 		}
 		
-		private var _parameters:Array;
+		private var parameterList:Array;
 		public function set parameters(value:Array):void
 		{
-			_parameters = value;
+            parameterList = value;
 		}
 		
-		private var _properties:Vector.<Set>;
+		private var propertyList:Vector.<Set>;
 		public function set properties(value:Vector.<Set>):void
 		{
-			_properties = value;
+            propertyList = value;
 		}
-		
+        
 		public function getInstance(dependencies:DependencyContainer):*
 		{
 			var constructor:Method = qualifiedType.constructor;
@@ -58,20 +55,25 @@ package se.stade.buoy.dependencies
 			
 			for (var i:int = 0; i < constructor.parameters.length; i++)
 			{
-				var parameter:Parameter = Parameter(constructor.parameters[i]);
-				var injectParameter:Inject = (i < _parameters.length) ? _parameters[i] as Inject : Inject.inferred;
-				
-				if (injectParameter)
-				{
-					var type:Class = injectParameter.type || getDefinitionByName(parameter.type) as Class;
-					constructorParameters.push(dependencies.getInstance(type));
-				}
-				else
-					constructorParameters.push(_parameters[i]);
+				var inject:Inject = parameterList[i] ? parameterList[i] as Inject : Inject.inferred;
+                
+                if (inject)
+                {
+                    constructorParameters.push(
+                        dependencies.getInstance(
+                            inject.type || define(constructor.parameters[i].type),
+                            inject.id
+                        )
+                    );
+                }
+                else
+                {
+                    constructorParameters.push(parameterList[i]);
+                }
 			}
 			
 			var instance:* = constructor.invoke(constructorParameters);
-			var dependency:Instance = new Instance(instance, _properties);
+			var dependency:Instance = new Instance(instance, propertyList);
 			
 			return dependency.getInstance(dependencies);
 		}

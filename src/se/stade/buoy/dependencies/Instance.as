@@ -1,9 +1,9 @@
 package se.stade.buoy.dependencies
 {
 	import flash.utils.Dictionary;
-	import flash.utils.getDefinitionByName;
 	
 	import se.stade.daffodil.Reflect;
+	import se.stade.daffodil.define;
 	import se.stade.daffodil.properties.Property;
 	import se.stade.daffodil.types.QualifiedType;
 
@@ -43,7 +43,7 @@ package se.stade.buoy.dependencies
 		public function set value(value:*):void
 		{
 			instance = value;
-			qualifiedType = Reflect.types.on(value)[0];
+			qualifiedType = Reflect.first.type.on(value);
 		}
 		
 		private var injections:Dictionary = new Dictionary;
@@ -62,24 +62,20 @@ package se.stade.buoy.dependencies
 			if (!instance)
 				return null;
 			
-			var injectables:Array = Reflect.properties.thatAreWritable.on(instance);
+			var subjects:Array = Reflect.all.properties
+                                        .withWriteAccess
+                                        .on(instance);
 			
-			for each (var property:Property in injectables)
+			for each (var property:Property in subjects)
 			{
 				if (property.name in injections)
 				{
 					var parameter:Set = injections[property.name];
-					var injectProperty:Inject = (parameter.value) ? parameter.value as Inject : Inject.inferred;
+					var inject:Inject = parameter.value ? parameter.value as Inject : Inject.inferred;
 						
-					if (injectProperty)
-					{
-						var type:Class = injectProperty.type || getDefinitionByName(property.type) as Class;
-						var name:String = injectProperty.id;
-						
-						instance[property.name] = dependencies.getInstance(type, name);
-					}
-					else
-						instance[property.name] = parameter.value;
+					instance[property.name] = inject ?
+                        dependencies.getInstance(inject.type || define(property.type), inject.id)
+                        : parameter.value;
 				}
 			}
 			
