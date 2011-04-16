@@ -2,6 +2,7 @@ package se.stade.buoy
 {
 	import se.stade.buoy.connectors.metadata.DefaultTags;
 	import se.stade.buoy.dependencies.DependencyContainer;
+	import se.stade.buoy.dependencies.EmptyContainer;
 	import se.stade.buoy.dependencies.SimpleContainer;
 	
 	public class SimpleConfiguration implements Configuration
@@ -12,10 +13,10 @@ package se.stade.buoy
             connectors = Vector.<Connector>([new DefaultTags]);
         }
         
-		private var _dependencyContainer:DependencyContainer = new SimpleContainer;
+		private var _dependencyContainer:DependencyContainer;
 		public function get dependencies():DependencyContainer
 		{
-			return _dependencyContainer;
+			return _dependencyContainer || EmptyContainer.instance;
 		}
 		
 		public function set dependencies(value:DependencyContainer):void

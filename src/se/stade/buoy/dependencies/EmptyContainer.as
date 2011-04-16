@@ -3,7 +3,7 @@ package se.stade.buoy.dependencies
     import se.stade.colligo.iterators.Iterator;
     import se.stade.colligo.iterators.LinearIterator;
     
-    internal final class EmptyContainer implements DependencyContainer
+    public final class EmptyContainer implements DependencyContainer
     {
         public static const instance:EmptyContainer = new EmptyContainer;
         
