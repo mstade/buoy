@@ -9,7 +9,7 @@ package se.stade.buoy.dependencies
 			this.type = type;
 			this.id = id;
 		}
-		
+        
 		private var _type:Class;
 		public function get type():Class
 		{
