@@ -25,10 +25,10 @@ package se.stade.buoy.connectors.metadata
 		
 		public function connect(mediators:Array):void
 		{
-			var properties:Array = Reflect.properties
+			var properties:Array = Reflect.all.properties
 										  .ofType(FlashQuery)
 										  .withMetadata(tag)
-										  .thatAreWritable
+										  .withWriteAccess
 										  .on(mediators);
 			
 			for each (var property:Property in properties)
@@ -44,10 +44,10 @@ package se.stade.buoy.connectors.metadata
 
 		public function release(mediators:Array):void
 		{
-			var properties:Array = Reflect.properties
+			var properties:Array = Reflect.all.properties
 										  .ofType(FlashQuery)
 										  .withMetadata(tag)
-										  .thatAreWritable
+										  .withWriteAccess
 										  .on(mediators);
 			
 			for each (var property:Property in properties)

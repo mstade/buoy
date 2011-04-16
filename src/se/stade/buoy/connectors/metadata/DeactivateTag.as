@@ -19,7 +19,7 @@ package se.stade.buoy.connectors.metadata
 		
 		public function release(mediators:Array):void
 		{
-			var deactivationMethods:Array = Reflect.methods.withMetadata(tag).on(mediators);
+			var deactivationMethods:Array = Reflect.all.methods.withMetadata(tag).on(mediators);
 			
 			for each (var method:Method in deactivationMethods)
 			{

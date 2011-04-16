@@ -36,7 +36,7 @@ package se.stade.buoy.connectors.metadata
 		
 		public function connect(mediators:Array):void
 		{
-			var eventHandlers:Array = Reflect.methods
+			var eventHandlers:Array = Reflect.all.methods
                                              .withMetadata(tag)
                                              .on(mediators);
 			
@@ -70,10 +70,9 @@ package se.stade.buoy.connectors.metadata
 		private function getEventListener(handler:Method, parameters:HandleEventTagParameters):Function
 		{
 			if (handler.parameters.length == 1
-				&& Reflect.types
+				&& Reflect.first.type
 						  .extending(Event)
-						  .on(handler.parameters[0])
-                          .length > 0)
+						  .on(handler.parameters[0]))
 			{
 				return handler.invoke;
 			}

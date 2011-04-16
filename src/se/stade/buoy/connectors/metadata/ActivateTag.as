@@ -16,7 +16,7 @@ package se.stade.buoy.connectors.metadata
 		
 		public function connect(mediators:Array):void
 		{
-			var activationMethods:Array = Reflect.methods.withMetadata(tag).on(mediators);
+			var activationMethods:Array = Reflect.all.methods.withMetadata(tag).on(mediators);
 			
 			for each (var method:Method in activationMethods)
 			{

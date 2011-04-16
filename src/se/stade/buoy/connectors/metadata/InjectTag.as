@@ -3,6 +3,7 @@ package se.stade.buoy.connectors.metadata
 	import flash.utils.getDefinitionByName;
 	
 	import se.stade.daffodil.Reflect;
+	import se.stade.daffodil.Reflection;
 	import se.stade.daffodil.Type;
 	import se.stade.daffodil.properties.Property;
 	
@@ -11,13 +12,16 @@ package se.stade.buoy.connectors.metadata
 		public function InjectTag(tag:String = "Inject")
 		{
 			super(tag, this);
+            allInjectees = Reflect.all.properties.withMetadata(tag).withWriteAccess;
 		}
+        
+        private var allInjectees:Reflection;
 		
 		public function connect(mediators:Array):void
 		{
-			var injectables:Array = Reflect.properties.withMetadata(tag).thatAreWritable.on(mediators);
+			var injectees:Array = allInjectees.on(mediators);
 			
-			for each (var property:Property in injectables)
+			for each (var property:Property in injectees)
 			{
 				var parameters:InjectTagParameters = Reflect.metadata(tag)
 														    .on(property)
@@ -29,9 +33,12 @@ package se.stade.buoy.connectors.metadata
 
 		public function release(mediators:Array):void
 		{
-			var injectables:Array = Reflect.properties.withMetadata(tag).thatAreWritable.on(mediators);
+			var injectees:Array = Reflect.all.properties
+                                         .withMetadata(tag)
+                                         .withWriteAccess
+                                         .on(mediators);
 			
-			for each (var property:Property in injectables)
+			for each (var property:Property in injectees)
 			{
 				property.value = null;
 			}
