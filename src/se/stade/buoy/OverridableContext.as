@@ -42,27 +42,12 @@ package se.stade.buoy
 			_configuration = value;
 		}
 		
-		protected var overrides:Vector.<ContextOverride>
+		protected var overrides:OverrideList = new OverrideList;
 
         public function set overrideSubContext(list:Vector.<ContextOverride>):void
 		{
-            if (attachedView)
-            {
-                for each (var override:ContextOverride in overrides)
-                {
-                    attachedView.removeEventListener(ContextEvent.ATTACH, override.handle);
-                }
-            }
-            
-            overrides = list.slice();
-            
-            if (attachedView)
-            {
-                for each (override in list)
-                {
-                    attachedView.addEventListener(ContextEvent.ATTACH, override.handle);
-                }
-            }
+            overrides.list = list;
+            overrides.view = attachedView;
 		}
 		
 		protected var attachedView:UIComponent;
@@ -104,16 +89,13 @@ package se.stade.buoy
 			
 			startupSequence.addEventListener(StepEvent.Finished, function():void
 			{
+                overrides.view = attachedView;
+                
 				for each (var connector:Connector in configuration.connectors)
 				{
 					connector.initialize(attachedView, configuration.dependencies);
 				}
                 
-                for each (var override:ContextOverride in overrides)
-                {
-                    view.addEventListener(ContextEvent.ATTACH, override.handle);
-                }
-				
 				for each (var request:ContextEvent in deferredAttachRequests)
 				{
                     request.context.configuration.dependencies.parent = configuration.dependencies;
@@ -147,23 +129,17 @@ package se.stade.buoy
 			if (!attachedView)
 				return;
 			
+            for each (var connector:Connector in configuration.connectors)
+            {
+                connector.dispose();
+            }
+
+            overrides.view = attachedView = null;
+            
 			shutdownSequence.addEventListener(StepEvent.Finished, function():void
 			{
                 shutdownSequence.removeEventListener(StepEvent.Finished, arguments.callee);
-                
-                for each (var override:ContextOverride in overrides)
-                {
-    				attachedView.removeEventListener(ContextEvent.ATTACH, override.handle);
-                }
-				
-				dispatchEvent(ContextEvent.dispose(this, attachedView));
-				
-				for each (var connector:Connector in configuration.connectors)
-				{
-					connector.dispose();
-				}
-				
-				attachedView = null;
+                dispatchEvent(ContextEvent.dispose(this, attachedView));
 			});
 			
             shutdownSequence.start(this);
