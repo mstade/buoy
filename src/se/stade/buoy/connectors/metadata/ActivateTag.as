@@ -1,18 +1,16 @@
 package se.stade.buoy.connectors.metadata
 {
-	import se.stade.buoy.dependencies.ioc.MethodInvoker;
+	import se.stade.buoy.Connector;
+	import se.stade.buoy.dependencies.ioc.invoke;
 	import se.stade.daffodil.Reflect;
-	import se.stade.daffodil.Reflection;
 	import se.stade.daffodil.methods.Method;
 
-	public class ActivateTag extends MetadataTagBase implements MetadataTag
+	public class ActivateTag extends MetadataTagBase implements Connector
 	{
 		public function ActivateTag(tag:String = "Activate")
 		{
 			super(tag, this);
 		}
-		
-		protected var invoker:MethodInvoker = new MethodInvoker();
 		
 		public function connect(mediators:Array):void
 		{
@@ -20,7 +18,7 @@ package se.stade.buoy.connectors.metadata
 			
 			for each (var method:Method in activationMethods)
 			{
-				invoker.apply(method, dependencies);
+				invoke(method, dependencies);
 			}
 		}
 		

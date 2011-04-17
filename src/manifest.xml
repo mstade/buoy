@@ -12,7 +12,6 @@
   <component uri="http://bouy.se/2011" name="InitializeTag" class="se.stade.buoy.connectors.metadata.InitializeTag"/>
   <component uri="http://bouy.se/2011" name="InjectTag" class="se.stade.buoy.connectors.metadata.InjectTag"/>
   <component uri="http://bouy.se/2011" name="InjectTagParameters" class="se.stade.buoy.connectors.metadata.InjectTagParameters"/>
-  <component uri="http://bouy.se/2011" name="MetadataTag" class="se.stade.buoy.connectors.metadata.MetadataTag"/>
   <component uri="http://bouy.se/2011" name="MetadataTagBase" class="se.stade.buoy.connectors.metadata.MetadataTagBase"/>
   <component uri="http://bouy.se/2011" name="Context" class="se.stade.buoy.Context"/>
   <component uri="http://bouy.se/2011" name="ContextEvent" class="se.stade.buoy.ContextEvent"/>
@@ -21,7 +20,6 @@
   <component uri="http://bouy.se/2011" name="Factory" class="se.stade.buoy.dependencies.Factory"/>
   <component uri="http://bouy.se/2011" name="Inject" class="se.stade.buoy.dependencies.Inject"/>
   <component uri="http://bouy.se/2011" name="Instance" class="se.stade.buoy.dependencies.Instance"/>
-  <component uri="http://bouy.se/2011" name="MethodInvoker" class="se.stade.buoy.dependencies.ioc.MethodInvoker"/>
   <component uri="http://bouy.se/2011" name="Set" class="se.stade.buoy.dependencies.Set"/>
   <component uri="http://bouy.se/2011" name="SimpleContainer" class="se.stade.buoy.dependencies.SimpleContainer"/>
   <component uri="http://bouy.se/2011" name="SimpleConfiguration" class="se.stade.buoy.SimpleConfiguration"/>

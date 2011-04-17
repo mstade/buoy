@@ -5,16 +5,15 @@ package se.stade.buoy.connectors.metadata
 	
 	import mx.core.UIComponent;
 	
+	import se.stade.buoy.Connector;
 	import se.stade.buoy.dependencies.DependencyContainer;
 	import se.stade.buoy.dependencies.SimpleContainer;
-	import se.stade.buoy.dependencies.ioc.MethodInvoker;
+	import se.stade.buoy.dependencies.ioc.invoke;
 	import se.stade.daffodil.Reflect;
 	import se.stade.daffodil.methods.Method;
-	import se.stade.daffodil.properties.Property;
-	import se.stade.flash.dom.events.EventListenerParameters;
 	import se.stade.flash.dom.query.FlashQuery;
 	
-	public class HandleEventTag extends MetadataTagBase implements MetadataTag
+	public class HandleEventTag extends MetadataTagBase implements Connector
 	{
 		public function HandleEventTag(tag:String = "HandleEvent", eventType:String = "")
 		{
@@ -55,6 +54,7 @@ package se.stade.buoy.connectors.metadata
     					var listener:Function = getEventListener(handler, parameters);
     
     					var dispatcher:FlashQuery = document.find(parameters.target);
+                        dispatcher.live = parameters.live;
     					dispatcher.addEventListener(type,
     											    listener,
     											    parameters.useCapture,
@@ -81,10 +81,10 @@ package se.stade.buoy.connectors.metadata
 				return function(event:Event):void
 				{
                     var methodDependencies:DependencyContainer = new SimpleContainer();
-                    methodDependencies.parent = dependencies;
-                    methodDependencies.setInstance(event);
+                    methodDependencies.setParent(dependencies);
+                    methodDependencies.set(event);
                     
-					MethodInvoker.Instance.apply(handler, methodDependencies);
+					invoke(handler, methodDependencies);
 				}
 			}
 		}

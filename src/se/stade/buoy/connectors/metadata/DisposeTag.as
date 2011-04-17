@@ -4,12 +4,13 @@ package se.stade.buoy.connectors.metadata
 	
 	import mx.core.UIComponent;
 	
+	import se.stade.buoy.Connector;
 	import se.stade.buoy.dependencies.DependencyContainer;
-	import se.stade.buoy.dependencies.ioc.MethodInvoker;
+	import se.stade.buoy.dependencies.ioc.invoke;
 	import se.stade.daffodil.Reflect;
 	import se.stade.daffodil.methods.Method;
 
-	public class DisposeTag extends MetadataTagBase implements MetadataTag
+	public class DisposeTag extends MetadataTagBase implements Connector
 	{
 		public function DisposeTag(tag:String = "Dispose")
 		{
@@ -17,7 +18,6 @@ package se.stade.buoy.connectors.metadata
 		}
 		
 		protected var disposers:Dictionary;
-		protected var invoker:MethodInvoker = new MethodInvoker();
 		
 		override public function initialize(view:UIComponent, dependencies:DependencyContainer):void
 		{
@@ -49,7 +49,7 @@ package se.stade.buoy.connectors.metadata
 		{
 			for each (var method:Method in disposers)
 			{
-				invoker.apply(method, dependencies);
+				invoke(method, dependencies);
 			}
 		}
 	}

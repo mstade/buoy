@@ -1,14 +1,12 @@
 package se.stade.buoy.connectors.metadata
 {
-	import flash.utils.getDefinitionByName;
-	
+	import se.stade.buoy.Connector;
 	import se.stade.daffodil.Reflect;
 	import se.stade.daffodil.Reflection;
-	import se.stade.daffodil.Type;
 	import se.stade.daffodil.define;
 	import se.stade.daffodil.properties.Property;
 	
-	public class InjectTag extends MetadataTagBase implements MetadataTag
+	public class InjectTag extends MetadataTagBase implements Connector
 	{
 		public function InjectTag(tag:String = "Inject")
 		{

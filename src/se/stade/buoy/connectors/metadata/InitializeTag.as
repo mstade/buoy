@@ -4,12 +4,13 @@ package se.stade.buoy.connectors.metadata
 	
 	import mx.core.UIComponent;
 	
+	import se.stade.buoy.Connector;
 	import se.stade.buoy.dependencies.DependencyContainer;
-	import se.stade.buoy.dependencies.ioc.MethodInvoker;
+	import se.stade.buoy.dependencies.ioc.invoke;
 	import se.stade.daffodil.Reflect;
 	import se.stade.daffodil.methods.Method;
 	
-	public class InitializeTag extends MetadataTagBase implements MetadataTag
+	public class InitializeTag extends MetadataTagBase implements Connector
 	{
 		public function InitializeTag(tag:String = "Init")
 		{
@@ -17,7 +18,6 @@ package se.stade.buoy.connectors.metadata
 		}
 		
 		protected var executionHistory:Dictionary;
-		protected var invoker:MethodInvoker = new MethodInvoker();
 		
 		override public function initialize(view:UIComponent, dependencies:DependencyContainer):void
 		{
@@ -36,7 +36,7 @@ package se.stade.buoy.connectors.metadata
 				if (initializer in executionHistory)
 					continue;
 				
-				invoker.apply(initializer, dependencies);
+				invoke(initializer, dependencies);
 				executionHistory[initializer] = true;
 			}
 		}

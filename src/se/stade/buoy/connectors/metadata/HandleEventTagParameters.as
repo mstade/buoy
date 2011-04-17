@@ -6,10 +6,12 @@ package se.stade.buoy.connectors.metadata
 	{
 		[DefaultProperty]
 		public var target:String;
+        public var live:Boolean;
 		
 		public var type:String;
 		public var priority:int;
 		public var useCapture:Boolean;
 		public var useWeakReference:Boolean;
+        
 	}
 }
