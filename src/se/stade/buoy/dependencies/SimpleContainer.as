@@ -7,6 +7,7 @@ package se.stade.buoy.dependencies
 	import se.stade.colligo.iterators.Iterator;
 	import se.stade.colligo.iterators.LinearIterator;
 	import se.stade.daffodil.define;
+	import se.stade.daffodil.qualify;
 	import se.stade.stilts.string.formatting.format;
 	
 	[DefaultProperty("providers")]
@@ -17,19 +18,16 @@ package se.stade.buoy.dependencies
 		    this.providers = providers; 
 		}
 		
-		protected var dependencyTable:Dictionary = new Dictionary();
+		protected var dependencyTable:Dictionary = new Dictionary;
 		
-		protected function getHashedKey(type:Class, name:String = ""):String
+		protected function hash(type:String, name:String = ""):String
 		{
-			var qualifiedName:String = getQualifiedClassName(type);
-			
-			if (qualifiedName || name)
+			if (type || name)
 			{
-				return format("{type}: '{name}'",
-					{
-						type: qualifiedName || "*",
-						name: name || ""
-					});
+                return format("{type}#{name}", {
+                    type: String(type || "").replace("::", "|"),
+                    name: name || ""
+                });
 			}
 			
 			return "";
@@ -73,13 +71,13 @@ package se.stade.buoy.dependencies
 		
 		public function contains(type:Class, name:String=""):Boolean
 		{
-			var key:String = getHashedKey(type, name);
+			var key:String = hash(qualify(type), name);
 			return key in dependencyTable || parent.contains(type, name);
 		}
 		
 		public function getProvider(type:Class, name:String=""):DependencyProvider
 		{
-			var key:String = getHashedKey(type, name);
+			var key:String = hash(qualify(type), name);
 			return dependencyTable[key] || parent.getProvider(type, name);
 		}
 		
@@ -89,18 +87,17 @@ package se.stade.buoy.dependencies
 			
 			for each (var component:DependencyProvider in components)
 			{
-				if (component.name)
-				{
-					var key:String = getHashedKey(null, component.name);
-					dependencyTable[key] = component;
-				}
+                var key:String = hash(null, component.name);
+                
+                if (key)
+                    dependencyTable[key] = component;
 				
 				for each (var type:String in component.types)
 				{
-					key = getHashedKey(define(type), component.name);
+					key = hash(type, component.name);
 					dependencyTable[key] = component;
 					
-					key = getHashedKey(define(type));
+					key = hash(type);
 					dependencyTable[key] = component;
 				}
 			}
