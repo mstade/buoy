@@ -34,7 +34,7 @@ package se.stade.buoy.dependencies
 		
 		public function get types():Vector.<String>
 		{
-			return new <String>[qualifiedType.name]
+			return new <String>[qualifiedType.qualifiedName]
 							   .concat(qualifiedType.extendedTypes)
 							   .concat(qualifiedType.implementedInterfaces);
 		}
