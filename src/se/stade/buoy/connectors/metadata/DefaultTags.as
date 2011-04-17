@@ -55,7 +55,7 @@ package se.stade.buoy.connectors.metadata
 		
 		public function initialize(view:UIComponent, dependencies:DependencyContainer):void
 		{
-            var query:FlashQuery = new FlashQuery(new <DisplayObject>[view]);
+            var query:FlashQuery = FlashQuery.from(view);
 			dependencies.set(query);
 			
 			for each (var connector:Connector in connectorOrder)
