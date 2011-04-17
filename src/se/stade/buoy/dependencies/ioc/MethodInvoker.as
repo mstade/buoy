@@ -3,6 +3,7 @@ package se.stade.buoy.dependencies.ioc
 	import flash.utils.getDefinitionByName;
 	
 	import se.stade.buoy.dependencies.DependencyContainer;
+	import se.stade.daffodil.define;
 	import se.stade.daffodil.methods.Method;
 	import se.stade.daffodil.methods.Parameter;
 
@@ -16,8 +17,8 @@ package se.stade.buoy.dependencies.ioc
 			
 			for each (var parameter:Parameter in method.parameters)
 			{
-				var definition:Class = getDefinitionByName(parameter.type) as Class;
-				parameters.push(dependencies.getInstance(definition));
+				var definition:Class = define(parameter.type);
+				parameters.push(dependencies.get(definition));
 			}
 			
 			return method.invoke(parameters);

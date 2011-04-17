@@ -98,7 +98,7 @@ package se.stade.buoy
                 
 				for each (var request:ContextEvent in deferredAttachRequests)
 				{
-                    request.context.configuration.dependencies.parent = configuration.dependencies;
+                    request.context.configuration.dependencies.setParent(configuration.dependencies);
 					request.context.attach(request.view);
 				}
 				

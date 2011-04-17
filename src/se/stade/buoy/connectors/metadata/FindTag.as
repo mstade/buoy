@@ -20,7 +20,7 @@ package se.stade.buoy.connectors.metadata
 		override public function initialize(view:UIComponent, dependencies:DependencyContainer):void
 		{
 			super.initialize(view, dependencies);
-			document = dependencies.getInstance(FlashQuery) || FlashQuery.from(view);
+			document = dependencies.get(FlashQuery) || FlashQuery.from(view);
 		}
 		
 		public function connect(mediators:Array):void

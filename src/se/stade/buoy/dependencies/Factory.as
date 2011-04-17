@@ -5,7 +5,7 @@ package se.stade.buoy.dependencies
 	import se.stade.daffodil.methods.Method;
 	import se.stade.daffodil.types.QualifiedType;
 	
-	public class Factory implements Dependency
+	public class Factory implements DependencyProvider
 	{
 		public function Factory(type:Class = null, properties:Vector.<Set> = null, ... parameters)
 		{
@@ -60,7 +60,7 @@ package se.stade.buoy.dependencies
                 if (inject)
                 {
                     constructorParameters.push(
-                        dependencies.getInstance(
+                        dependencies.get(
                             inject.type || define(constructor.parameters[i].type),
                             inject.id
                         )

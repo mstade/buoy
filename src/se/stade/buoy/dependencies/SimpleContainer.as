@@ -8,15 +8,12 @@ package se.stade.buoy.dependencies
 	import se.stade.colligo.iterators.LinearIterator;
 	import se.stade.stilts.string.formatting.format;
 	
-	[Event(name="updatedDependency", type="se.stade.buoy.dependencies.DependencyEvent")]
-
-	[DefaultProperty("dependencies")]
+	[DefaultProperty("providers")]
 	public class SimpleContainer extends EventDispatcher implements DependencyContainer
 	{
-		public function SimpleContainer(dependencies:Vector.<Dependency> = null)
+		public function SimpleContainer(providers:Vector.<DependencyProvider> = null)
 		{
-            if (dependencies)
-			    this.dependencies = dependencies; 
+		    this.providers = providers; 
 		}
 		
 		protected var dependencyTable:Dictionary = new Dictionary();
@@ -37,59 +34,55 @@ package se.stade.buoy.dependencies
 			return "";
 		}
         
-        private var _parent:DependencyContainer
-        public function get parent():DependencyContainer
-        {
-            return _parent || EmptyContainer.instance;
-        }
+        private var parent:DependencyContainer = EmptyContainer.instance; 
         
-        public function set parent(value:DependencyContainer):void
+        public function setParent(value:DependencyContainer):void
         {
-            _parent = value;
+            parent = value || EmptyContainer.instance;
         }
 		
-		public function set dependencies(value:Vector.<Dependency>):void
+		public function set providers(value:Vector.<DependencyProvider>):void
 		{
-			for each (var dependency:Dependency in value)
+			for each (var provider:DependencyProvider in value)
 			{
-				setDependency(dependency);
+				setProvider(provider);
 			}
 		}
 		
-		public function getInstance(type:Class, name:String = ""):*
+		public function get(type:Class, name:String = ""):*
 		{
-			var factory:Dependency = getDependency(type, name);
+			var factory:DependencyProvider = getProvider(type, name);
 			
 			if (factory)
 				return factory.getInstance(this);
 		}
 		
-		public function setInstance(instance:*, name:String = ""):Dependency
+		public function set(instance:*, name:String = ""):DependencyProvider
 		{
 			var dependency:Instance = new Instance(instance);
 			dependency.name = name;
 			
-			setDependency(dependency);
+			setProvider(dependency);
 			return dependency;
 		}
 		
-		public function canResolve(type:Class, name:String=""):Boolean
+		public function contains(type:Class, name:String=""):Boolean
 		{
 			var key:String = getHashedKey(getQualifiedClassName(type), name);
-			return key in dependencyTable || parent.canResolve(type, name);
+			return key in dependencyTable || parent.contains(type, name);
 		}
 		
-		public function getDependency(type:Class, name:String=""):Dependency
+		public function getProvider(type:Class, name:String=""):DependencyProvider
 		{
 			var key:String = getHashedKey(getQualifiedClassName(type), name);
-			return dependencyTable[key] || parent.getDependency(type, name);
+			return dependencyTable[key] || parent.getProvider(type, name);
 		}
 		
-		public function setDependency(component:Dependency, ... components):void
+		public function setProvider(component:DependencyProvider, ... components):void
 		{
 			components = [component].concat(components);
 			
-			for each (var component:Dependency in components)
+			for each (var component:DependencyProvider in components)
 			{
 				if (component.name)
 				{
@@ -105,35 +98,7 @@ package se.stade.buoy.dependencies
 					key = getHashedKey(type);
 					dependencyTable[key] = component;
 				}
-				
-				dispatchEvent(new DependencyEvent(component));
 			}
-		}
-		
-		public function getAllDependencies():Vector.<Dependency>
-		{
-			var listContents:Dictionary = new Dictionary();
-			var list:Vector.<Dependency> = new <Dependency>[];
-			
-			for each (var dependency:Dependency in dependencyTable)
-			{
-				if (dependency in listContents)
-					continue;
-				
-				list.push(dependency);
-			}
-			
-			return list;
-		}
-		
-		public function clone():DependencyContainer
-		{
-			return new SimpleContainer(getAllDependencies());
-		}
-		
-		public function iterate():Iterator
-		{
-			return new LinearIterator(getAllDependencies());
 		}
 	}
 }

@@ -31,7 +31,7 @@ package se.stade.buoy.connectors.metadata
 		override public function initialize(view:UIComponent, dependencies:DependencyContainer):void
 		{
 			super.initialize(view, dependencies);
-			document = dependencies.getInstance(FlashQuery) || FlashQuery.from(view);
+			document = dependencies.get(FlashQuery) || FlashQuery.from(view);
 		}
 		
 		public function connect(mediators:Array):void
@@ -55,7 +55,7 @@ package se.stade.buoy.connectors.metadata
     					var listener:Function = getEventListener(handler, parameters);
     
     					var dispatcher:FlashQuery = document.find(parameters.target);
-    					dispatcher.addEventListener(eventType || parameters.type,
+    					dispatcher.addEventListener(type,
     											    listener,
     											    parameters.useCapture,
     											    parameters.priority,
@@ -80,9 +80,10 @@ package se.stade.buoy.connectors.metadata
 			{
 				return function(event:Event):void
 				{
-					var methodDependencies:DependencyContainer = dependencies.clone();
+                    var methodDependencies:DependencyContainer = new SimpleContainer();
+                    methodDependencies.parent = dependencies;
                     methodDependencies.setInstance(event);
-					
+                    
 					MethodInvoker.Instance.apply(handler, methodDependencies);
 				}
 			}

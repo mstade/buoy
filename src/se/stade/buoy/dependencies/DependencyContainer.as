@@ -2,20 +2,16 @@ package se.stade.buoy.dependencies
 {
 	import se.stade.colligo.Collection;
 	
-	public interface DependencyContainer extends Collection
+	public interface DependencyContainer
 	{
-        function set parent(value:DependencyContainer):void;
+        function setParent(value:DependencyContainer):void;
         
-		function getInstance(type:Class, name:String = ""):*;
-		function setInstance(instance:*, name:String = ""):Dependency;
+		function get(type:Class, name:String = ""):*;
+		function set(instance:*, name:String = ""):DependencyProvider;
 		
-		function getDependency(type:Class, name:String = ""):Dependency;
-		function setDependency(dependency:Dependency, ... dependencies):void;
-		
-		function getAllDependencies():Vector.<Dependency>;
+		function getProvider(type:Class, name:String = ""):DependencyProvider;
+		function setProvider(dependency:DependencyProvider, ... dependencies):void;
 
-		function canResolve(type:Class, name:String = ""):Boolean;
-		
-		function clone():DependencyContainer;
+		function contains(type:Class, name:String = ""):Boolean;
 	}
 }

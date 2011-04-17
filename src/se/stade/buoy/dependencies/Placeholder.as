@@ -2,7 +2,7 @@ package se.stade.buoy.dependencies
 {
     import flash.errors.IllegalOperationError;
 
-    public class Placeholder implements Dependency
+    public class Placeholder implements DependencyProvider
     {
         private var _name:String
         public function get name():String

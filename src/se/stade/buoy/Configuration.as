@@ -1,6 +1,6 @@
 package se.stade.buoy
 {
-	import se.stade.buoy.dependencies.Dependency;
+	import se.stade.buoy.dependencies.DependencyProvider;
 	import se.stade.buoy.dependencies.DependencyContainer;
 
 	public interface Configuration

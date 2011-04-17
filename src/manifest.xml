@@ -16,10 +16,8 @@
   <component uri="http://bouy.se/2011" name="MetadataTagBase" class="se.stade.buoy.connectors.metadata.MetadataTagBase"/>
   <component uri="http://bouy.se/2011" name="Context" class="se.stade.buoy.Context"/>
   <component uri="http://bouy.se/2011" name="ContextEvent" class="se.stade.buoy.ContextEvent"/>
-  <component uri="http://bouy.se/2011" name="Dependency" class="se.stade.buoy.dependencies.Dependency"/>
-  <component uri="http://bouy.se/2011" name="DependencyBase" class="se.stade.buoy.dependencies.DependencyBase"/>
+  <component uri="http://bouy.se/2011" name="DependencyProvider" class="se.stade.buoy.dependencies.DependencyProvider"/>
   <component uri="http://bouy.se/2011" name="DependencyContainer" class="se.stade.buoy.dependencies.DependencyContainer"/>
-  <component uri="http://bouy.se/2011" name="DependencyEvent" class="se.stade.buoy.dependencies.DependencyEvent"/>
   <component uri="http://bouy.se/2011" name="Factory" class="se.stade.buoy.dependencies.Factory"/>
   <component uri="http://bouy.se/2011" name="Inject" class="se.stade.buoy.dependencies.Inject"/>
   <component uri="http://bouy.se/2011" name="Instance" class="se.stade.buoy.dependencies.Instance"/>
