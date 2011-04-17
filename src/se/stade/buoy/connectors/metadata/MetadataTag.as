@@ -5,6 +5,5 @@ package se.stade.buoy.connectors.metadata
 	public interface MetadataTag extends Connector
 	{
 		function get tag():String;
-		function set tag(value:String):void;
 	}
 }
