@@ -11,20 +11,22 @@ package se.stade.buoy.connectors.metadata
 		public function InjectTag(tag:String = "Inject")
 		{
 			super(tag, this);
-            allInjectees = Reflect.all.properties.withMetadata(tag).withWriteAccess;
 		}
         
         private var allInjectees:Reflection;
 		
 		public function connect(mediators:Array):void
 		{
-			var injectees:Array = allInjectees.on(mediators);
+			var injectees:Array = Reflect.all.properties
+                                         .withWriteAccess
+                                         .withMetadata(tag)
+                                         .on(mediators);
 			
 			for each (var property:Property in injectees)
 			{
-				var parameters:InjectTagParameters = Reflect.metadata(tag)
+				var parameters:InjectTagParameters = Reflect.first.metadata(tag)
 														    .on(property)
-														    .asType(InjectTagParameters)[0];
+														    .into(InjectTagParameters);
 				
 				property.value = dependencies.get(parameters.type || define(property.type), parameters.name);
 			}
@@ -33,8 +35,8 @@ package se.stade.buoy.connectors.metadata
 		public function release(mediators:Array):void
 		{
 			var injectees:Array = Reflect.all.properties
-                                         .withMetadata(tag)
                                          .withWriteAccess
+                                         .withMetadata(tag)
                                          .on(mediators);
 			
 			for each (var property:Property in injectees)

@@ -41,9 +41,9 @@ package se.stade.buoy.connectors.metadata
 			
 			for each (var handler:Method in eventHandlers)
 			{
-				var eventParameters:Array = Reflect.metadata(tag)
+				var eventParameters:Array = Reflect.all.metadata(tag)
 											       .on(handler)
-                                                   .asType(HandleEventTagParameters);
+                                                   .into(HandleEventTagParameters);
 				
 				for each (var parameters:HandleEventTagParameters in eventParameters)
 				{
