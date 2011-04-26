@@ -112,7 +112,7 @@ package se.stade.buoy
 		{
 			for each (var connector:Connector in configuration.connectors)
 			{
-				connector.connect(configuration.behaviours);
+				connector.connect(configuration.behaviors);
 			}
 		}
 
@@ -120,7 +120,7 @@ package se.stade.buoy
 		{
 			for each (var connector:Connector in configuration.connectors)
 			{
-				connector.release(configuration.behaviours);
+				connector.release(configuration.behaviors);
 			}
 		}
 		

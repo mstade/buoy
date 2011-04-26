@@ -11,7 +11,7 @@ package se.stade.buoy
 		function get connectors():Vector.<Connector>;
 		function set connectors(value:Vector.<Connector>):void;
 		
-		function get behaviours():Array;
-		function set behaviours(value:Array):void;
+		function get behaviors():Array;
+		function set behaviors(value:Array):void;
 	}
 }

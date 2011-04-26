@@ -24,12 +24,12 @@ package se.stade.buoy.connectors.metadata
 			document = dependencies.get(FlashQuery) || FlashQuery.from(view);
 		}
 		
-		public function connect(mediators:Array):void
+		public function connect(behaviors:Array):void
 		{
 			var properties:Array = Reflect.all.properties
 										  .withMetadata(tag)
 										  .withWriteAccess
-										  .on(mediators);
+										  .on(behaviors);
 			
 			for each (var property:Property in properties)
 			{
@@ -42,12 +42,12 @@ package se.stade.buoy.connectors.metadata
 			}
 		}
 
-		public function release(mediators:Array):void
+		public function release(behaviors:Array):void
 		{
 			var properties:Array = Reflect.all.properties
 										  .withMetadata(tag)
 										  .withWriteAccess
-										  .on(mediators);
+										  .on(behaviors);
 			
 			for each (var property:Property in properties)
 			{

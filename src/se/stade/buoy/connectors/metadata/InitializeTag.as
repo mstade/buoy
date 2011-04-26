@@ -25,11 +25,11 @@ package se.stade.buoy.connectors.metadata
 			executionHistory = new Dictionary(true);
 		}
 		
-		public function connect(mediators:Array):void
+		public function connect(behaviors:Array):void
 		{
 			var initializers:Array = Reflect.all.methods
 											.withMetadata(tag)
-											.on(mediators);
+											.on(behaviors);
 			
 			for each (var initializer:Method in initializers)
 			{
@@ -41,7 +41,7 @@ package se.stade.buoy.connectors.metadata
 			}
 		}
 
-		public function release(mediators:Array):void
+		public function release(behaviors:Array):void
 		{
 		}
 		

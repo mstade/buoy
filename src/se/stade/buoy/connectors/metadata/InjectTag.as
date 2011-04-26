@@ -15,12 +15,12 @@ package se.stade.buoy.connectors.metadata
         
         private var allInjectees:Reflection;
 		
-		public function connect(mediators:Array):void
+		public function connect(behaviors:Array):void
 		{
 			var injectees:Array = Reflect.all.properties
                                          .withWriteAccess
                                          .withMetadata(tag)
-                                         .on(mediators);
+                                         .on(behaviors);
 			
 			for each (var property:Property in injectees)
 			{
@@ -32,12 +32,12 @@ package se.stade.buoy.connectors.metadata
 			}
 		}
 
-		public function release(mediators:Array):void
+		public function release(behaviors:Array):void
 		{
 			var injectees:Array = Reflect.all.properties
                                          .withWriteAccess
                                          .withMetadata(tag)
-                                         .on(mediators);
+                                         .on(behaviors);
 			
 			for each (var property:Property in injectees)
 			{

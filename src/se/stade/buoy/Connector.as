@@ -9,7 +9,7 @@ package se.stade.buoy
 	{
 		function initialize(view:UIComponent, dependencies:DependencyContainer):void;
 		
-		function connect(mediators:Array):void;
-		function release(mediators:Array):void;
+		function connect(behaviors:Array):void;
+		function release(behaviors:Array):void;
 	}
 }

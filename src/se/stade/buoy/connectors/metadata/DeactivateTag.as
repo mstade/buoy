@@ -12,13 +12,13 @@ package se.stade.buoy.connectors.metadata
 			super(tag, this);
 		}
 		
-		public function connect(mediators:Array):void
+		public function connect(behaviors:Array):void
 		{
 		}
 		
-		public function release(mediators:Array):void
+		public function release(behaviors:Array):void
 		{
-			var deactivationMethods:Array = Reflect.all.methods.withMetadata(tag).on(mediators);
+			var deactivationMethods:Array = Reflect.all.methods.withMetadata(tag).on(behaviors);
 			
 			for each (var method:Method in deactivationMethods)
 			{

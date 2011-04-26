@@ -33,11 +33,11 @@ package se.stade.buoy.connectors.metadata
 			document = dependencies.get(FlashQuery) || FlashQuery.from(view);
 		}
 		
-		public function connect(mediators:Array):void
+		public function connect(behaviors:Array):void
 		{
 			var eventHandlers:Array = Reflect.all.methods
                                              .withMetadata(tag)
-                                             .on(mediators);
+                                             .on(behaviors);
 			
 			for each (var handler:Method in eventHandlers)
 			{
@@ -89,7 +89,7 @@ package se.stade.buoy.connectors.metadata
 			}
 		}
 		
-		public function release(mediators:Array):void
+		public function release(behaviors:Array):void
 		{
 			for each (var dispatcher:FlashQuery in dispatchers)
 			{

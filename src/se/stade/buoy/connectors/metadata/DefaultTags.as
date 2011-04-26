@@ -64,19 +64,19 @@ package se.stade.buoy.connectors.metadata
 			}
 		}
 		
-		public function connect(mediators:Array):void
+		public function connect(behaviors:Array):void
 		{
 			for each (var connector:Connector in connectorOrder)
 			{
-				connector.connect(mediators);
+				connector.connect(behaviors);
 			}
 		}
 		
-		public function release(mediators:Array):void
+		public function release(behaviors:Array):void
 		{
 			for each (var connector:Connector in connectorOrder)
 			{
-				connector.release(mediators);
+				connector.release(behaviors);
 			}
 		}
 		

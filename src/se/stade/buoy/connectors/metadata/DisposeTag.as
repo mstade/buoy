@@ -25,9 +25,9 @@ package se.stade.buoy.connectors.metadata
 			disposers = new Dictionary(true);
 		}
 		
-		public function connect(mediators:Array):void
+		public function connect(behaviors:Array):void
 		{
-			var disposeMethods:Array = Reflect.all.methods.withMetadata(tag).on(mediators);
+			var disposeMethods:Array = Reflect.all.methods.withMetadata(tag).on(behaviors);
 			
 			for each (var method:Method in disposeMethods)
 			{
@@ -35,9 +35,9 @@ package se.stade.buoy.connectors.metadata
 			}
 		}
 		
-		public function release(mediators:Array):void
+		public function release(behaviors:Array):void
 		{
-			var disposeMethods:Array = Reflect.all.methods.withMetadata(tag).on(mediators);
+			var disposeMethods:Array = Reflect.all.methods.withMetadata(tag).on(behaviors);
 			
 			for each (var method:Method in disposeMethods)
 			{

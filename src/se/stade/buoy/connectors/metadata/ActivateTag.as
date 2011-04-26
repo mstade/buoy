@@ -12,9 +12,9 @@ package se.stade.buoy.connectors.metadata
 			super(tag, this);
 		}
 		
-		public function connect(mediators:Array):void
+		public function connect(behaviors:Array):void
 		{
-			var activationMethods:Array = Reflect.all.methods.withMetadata(tag).on(mediators);
+			var activationMethods:Array = Reflect.all.methods.withMetadata(tag).on(behaviors);
 			
 			for each (var method:Method in activationMethods)
 			{
@@ -22,7 +22,7 @@ package se.stade.buoy.connectors.metadata
 			}
 		}
 		
-		public function release(mediators:Array):void
+		public function release(behaviors:Array):void
 		{
 		}
 	}

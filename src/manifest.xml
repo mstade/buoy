@@ -1,36 +1,26 @@
 <componentPackage>
-  <component uri="http://bouy.se/2011" name="Configuration" class="se.stade.buoy.Configuration"/>
-  <component uri="http://bouy.se/2011" name="Connector" class="se.stade.buoy.Connector"/>
-  <component uri="http://bouy.se/2011" name="ActivateTag" class="se.stade.buoy.connectors.metadata.ActivateTag"/>
-  <component uri="http://bouy.se/2011" name="DeactivateTag" class="se.stade.buoy.connectors.metadata.DeactivateTag"/>
-  <component uri="http://bouy.se/2011" name="DefaultTags" class="se.stade.buoy.connectors.metadata.DefaultTags"/>
-  <component uri="http://bouy.se/2011" name="DisposeTag" class="se.stade.buoy.connectors.metadata.DisposeTag"/>
-  <component uri="http://bouy.se/2011" name="FindTag" class="se.stade.buoy.connectors.metadata.FindTag"/>
-  <component uri="http://bouy.se/2011" name="FindTagParameters" class="se.stade.buoy.connectors.metadata.FindTagParameters"/>
-  <component uri="http://bouy.se/2011" name="HandleEventTag" class="se.stade.buoy.connectors.metadata.HandleEventTag"/>
-  <component uri="http://bouy.se/2011" name="HandleEventTagParameters" class="se.stade.buoy.connectors.metadata.HandleEventTagParameters"/>
-  <component uri="http://bouy.se/2011" name="InitializeTag" class="se.stade.buoy.connectors.metadata.InitializeTag"/>
-  <component uri="http://bouy.se/2011" name="InjectTag" class="se.stade.buoy.connectors.metadata.InjectTag"/>
-  <component uri="http://bouy.se/2011" name="InjectTagParameters" class="se.stade.buoy.connectors.metadata.InjectTagParameters"/>
-  <component uri="http://bouy.se/2011" name="MetadataTagBase" class="se.stade.buoy.connectors.metadata.MetadataTagBase"/>
-  <component uri="http://bouy.se/2011" name="Context" class="se.stade.buoy.Context"/>
-  <component uri="http://bouy.se/2011" name="ContextEvent" class="se.stade.buoy.ContextEvent"/>
-  <component uri="http://bouy.se/2011" name="DependencyProvider" class="se.stade.buoy.dependencies.DependencyProvider"/>
-  <component uri="http://bouy.se/2011" name="DependencyContainer" class="se.stade.buoy.dependencies.DependencyContainer"/>
-  <component uri="http://bouy.se/2011" name="Factory" class="se.stade.buoy.dependencies.Factory"/>
-  <component uri="http://bouy.se/2011" name="Inject" class="se.stade.buoy.dependencies.Inject"/>
-  <component uri="http://bouy.se/2011" name="Instance" class="se.stade.buoy.dependencies.Instance"/>
-  <component uri="http://bouy.se/2011" name="Set" class="se.stade.buoy.dependencies.Set"/>
-  <component uri="http://bouy.se/2011" name="SimpleContainer" class="se.stade.buoy.dependencies.SimpleContainer"/>
-  <component uri="http://bouy.se/2011" name="SimpleConfiguration" class="se.stade.buoy.SimpleConfiguration"/>
-  <component uri="http://bouy.se/2011" name="OverridableContext" class="se.stade.buoy.OverridableContext"/>
-  <component uri="http://bouy.se/2011" name="AddConnectors" class="se.stade.buoy.overrides.AddConnectors"/>
-  <component uri="http://bouy.se/2011" name="AddMediators" class="se.stade.buoy.overrides.AddMediators"/>
-  <component uri="http://bouy.se/2011" name="SetConnectors" class="se.stade.buoy.overrides.SetConnectors"/>
-  <component uri="http://bouy.se/2011" name="SetDependencies" class="se.stade.buoy.overrides.SetDependencies"/>
-  <component uri="http://bouy.se/2011" name="SetMediators" class="se.stade.buoy.overrides.SetMediators"/>
-  <component uri="http://bouy.se/2011" name="Sequence" class="se.stade.buoy.sequencing.Sequence"/>
-  <component uri="http://bouy.se/2011" name="Step" class="se.stade.buoy.sequencing.Step"/>
-  <component uri="http://bouy.se/2011" name="StepError" class="se.stade.buoy.sequencing.StepError"/>
-  <component uri="http://bouy.se/2011" name="StepEvent" class="se.stade.buoy.sequencing.StepEvent"/>
+   <component name="ActivateTag" class="se.stade.buoy.connectors.metadata.ActivateTag"/>
+   <component name="DeactivateTag" class="se.stade.buoy.connectors.metadata.DeactivateTag"/>
+   <component name="DefaultTags" class="se.stade.buoy.connectors.metadata.DefaultTags"/>
+   <component name="DisposeTag" class="se.stade.buoy.connectors.metadata.DisposeTag"/>
+   <component name="FindTag" class="se.stade.buoy.connectors.metadata.FindTag"/>
+   <component name="HandleEventTag" class="se.stade.buoy.connectors.metadata.HandleEventTag"/>
+   <component name="InitializeTag" class="se.stade.buoy.connectors.metadata.InitializeTag"/>
+   <component name="InjectTag" class="se.stade.buoy.connectors.metadata.InjectTag"/>
+   <component name="MetadataTagBase" class="se.stade.buoy.connectors.metadata.MetadataTagBase"/>
+   <component name="ContextEvent" class="se.stade.buoy.ContextEvent"/>
+   <component name="Factory" class="se.stade.buoy.dependencies.Factory"/>
+   <component name="Instance" class="se.stade.buoy.dependencies.Instance"/>
+   <component name="Placeholder" class="se.stade.buoy.dependencies.Placeholder"/>
+   <component name="SimpleContainer" class="se.stade.buoy.dependencies.SimpleContainer"/>
+   <component name="OverridableContext" class="se.stade.buoy.OverridableContext"/>
+   <component name="AddBehaviors" class="se.stade.buoy.overrides.AddBehaviors"/>
+   <component name="AddConnectors" class="se.stade.buoy.overrides.AddConnectors"/>
+   <component name="SetBehaviors" class="se.stade.buoy.overrides.SetBehaviors"/>
+   <component name="SetConnectors" class="se.stade.buoy.overrides.SetConnectors"/>
+   <component name="SetDependencies" class="se.stade.buoy.overrides.SetDependencies"/>
+   <component name="SpecificConfiguration" class="se.stade.buoy.overrides.SpecificConfiguration"/>
+   <component name="Sequence" class="se.stade.buoy.sequencing.Sequence"/>
+   <component name="StepEvent" class="se.stade.buoy.sequencing.StepEvent"/>
+   <component name="SimpleConfiguration" class="se.stade.buoy.SimpleConfiguration"/>
 </componentPackage>

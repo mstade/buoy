@@ -35,15 +35,15 @@ package se.stade.buoy
 			_connectors = value;
 		}
 		
-		private var _mediators:Array;
-		public function get behaviours():Array
+		private var _behaviors:Array;
+		public function get behaviors():Array
 		{
-			return _mediators;
+			return _behaviors;
 		}
 		
-		public function set behaviours(value:Array):void
+		public function set behaviors(value:Array):void
 		{
-			_mediators = value;
+			_behaviors = value;
 		}
 	}
 }
