@@ -5,8 +5,8 @@ package se.stade.buoy
 
 	public interface Configuration
 	{
-		function get dependencies():DependencyContainer;
-		function set dependencies(value:DependencyContainer):void;
+		function get dependencyContainer():DependencyContainer;
+		function set dependencyContainer(value:DependencyContainer):void;
 		
 		function get connectors():Vector.<Connector>;
 		function set connectors(value:Vector.<Connector>):void;

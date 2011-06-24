@@ -13,7 +13,7 @@ package se.stade.buoy.overrides
 		{
 			for each (var dependency:DependencyProvider in dependencies)
 			{
-                event.context.configuration.dependencies.setProvider(dependency);
+                event.configuration.dependencyContainer.setProvider(dependency);
 			}
 		}
 	}

@@ -11,7 +11,7 @@ package se.stade.buoy.overrides
 		
 		public function handle(event:ContextEvent):void
 		{
-            event.context.configuration.connectors = connectors;
+            event.configuration.connectors = connectors;
 		}
 	}
 }

@@ -7,7 +7,10 @@ package se.stade.buoy
 	import mx.core.UIComponent;
 	import mx.events.FlexEvent;
 	
-	import se.stade.buoy.connectors.metadata.HandleEventTag;
+	import se.stade.buoy.connectors.metadata.DefaultTags;
+	import se.stade.buoy.dependencies.DependencyContainer;
+	import se.stade.buoy.dependencies.DependencyProvider;
+	import se.stade.buoy.dependencies.SimpleContainer;
 	import se.stade.buoy.overrides.ContextOverride;
 	import se.stade.buoy.sequencing.Sequence;
 	import se.stade.buoy.sequencing.Step;
@@ -17,8 +20,54 @@ package se.stade.buoy
 	[Event(name="disposeContext", type="se.stade.buoy.ContextEvent")]
 	
 	[DefaultProperty("configuration")]
-	public class OverridableContext extends EventDispatcher implements Context, IMXMLObject
+	public class MXMLContext extends EventDispatcher implements Context, Configuration, IMXMLObject
 	{
+        private var _dependencyContainer:DependencyContainer;
+        public function get dependencyContainer():DependencyContainer
+        {
+            if (!_dependencyContainer)
+            {
+                _dependencyContainer = new SimpleContainer;
+            }
+            
+            return _dependencyContainer;
+        }
+        
+        public function set dependencyContainer(value:DependencyContainer):void
+        {
+            _dependencyContainer = value;
+        }
+        
+        public function set dependencies(value:Vector.<DependencyProvider>):void
+        {
+            for each (var provider:DependencyProvider in value)
+            {
+                dependencyContainer.setProvider(provider);
+            }
+        }
+        
+        private var _connectors:Vector.<Connector> = new <Connector>[new DefaultTags];
+        public function get connectors():Vector.<Connector>
+        {
+            return _connectors ;
+        }
+        
+        public function set connectors(value:Vector.<Connector>):void
+        {
+            _connectors = value;
+        }
+        
+        private var _behaviors:Array;
+        public function get behaviors():Array
+        {
+            return _behaviors;
+        }
+        
+        public function set behaviors(value:Array):void
+        {
+            _behaviors = value;
+        }
+        
 		private var startupSequence:Sequence = new Sequence(null);
 		public function set startup(value:Vector.<Step>):void
 		{
@@ -31,20 +80,9 @@ package se.stade.buoy
 			shutdownSequence = new Sequence(value);
 		}
 		
-		private var _configuration:Configuration;
-		public function get configuration():Configuration
-		{
-			return _configuration;
-		}
-		
-		public function set configuration(value:Configuration):void
-		{
-			_configuration = value;
-		}
-		
 		protected var overrides:OverrideList = new OverrideList;
 
-        public function set overrideSubContext(list:Vector.<ContextOverride>):void
+        public function set subcontextOverrides(list:Vector.<ContextOverride>):void
 		{
             overrides.list = list;
             overrides.view = attachedView;
@@ -82,7 +120,7 @@ package se.stade.buoy
 		
 		protected function initialize(view:UIComponent, deferredAttachRequests:Vector.<ContextEvent> = null):void
 		{
-			if (!view.dispatchEvent(ContextEvent.attach(this, view)))
+			if (!view.dispatchEvent(ContextEvent.attach(this, this, view)))
 				return;
             
             attachedView = view;
@@ -91,14 +129,14 @@ package se.stade.buoy
 			{
                 overrides.view = attachedView;
                 
-				for each (var connector:Connector in configuration.connectors)
+				for each (var connector:Connector in connectors)
 				{
-					connector.initialize(attachedView, configuration.dependencies);
+					connector.initialize(attachedView, dependencyContainer);
 				}
                 
 				for each (var request:ContextEvent in deferredAttachRequests)
 				{
-                    request.context.configuration.dependencies.setParent(configuration.dependencies);
+                    request.configuration.dependencyContainer.setParent(dependencyContainer);
 					request.context.attach(request.view);
 				}
 				
@@ -110,17 +148,17 @@ package se.stade.buoy
         
 		public function activate():void
 		{
-			for each (var connector:Connector in configuration.connectors)
+			for each (var connector:Connector in connectors)
 			{
-				connector.connect(configuration.behaviors);
+				connector.connect(behaviors);
 			}
 		}
 
 		public function deactivate():void
 		{
-			for each (var connector:Connector in configuration.connectors)
+			for each (var connector:Connector in connectors)
 			{
-				connector.release(configuration.behaviors);
+				connector.release(behaviors);
 			}
 		}
 		
@@ -129,7 +167,7 @@ package se.stade.buoy
 			if (!attachedView)
 				return;
 			
-            for each (var connector:Connector in configuration.connectors)
+            for each (var connector:Connector in connectors)
             {
                 connector.dispose();
             }
@@ -139,7 +177,7 @@ package se.stade.buoy
 			shutdownSequence.addEventListener(StepEvent.Finished, function():void
 			{
                 shutdownSequence.removeEventListener(StepEvent.Finished, arguments.callee);
-                dispatchEvent(ContextEvent.dispose(this, attachedView));
+                dispatchEvent(ContextEvent.dispose(this, this, attachedView));
 			});
 			
             shutdownSequence.start(this);

@@ -4,10 +4,10 @@ package se.stade.buoy.dependencies
 	{
 		public static const inferred:Inject = new Inject();
 		
-		public function Inject(type:Class = null, id:String = "")
+		public function Inject(type:Class = null, name:String = "")
 		{
 			this.type = type;
-			this.id = id;
+			this.name = name;
 		}
         
 		private var _type:Class;
@@ -21,15 +21,15 @@ package se.stade.buoy.dependencies
 			_type = value;
 		}
 		
-		private var _id:String;
-		public function get id():String
+		private var _name:String;
+		public function get name():String
 		{
-			return _id;
+			return _name;
 		}
 		
-		public function set id(value:String):void
+		public function set name(value:String):void
 		{
-			_id = value;
+            _name = value;
 		}
 	}
 }

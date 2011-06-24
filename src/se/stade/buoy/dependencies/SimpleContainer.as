@@ -54,15 +54,15 @@ package se.stade.buoy.dependencies
 		
 		public function get(type:Class, name:String = ""):*
 		{
-			var factory:DependencyProvider = getProvider(type, name);
+			var dependency:DependencyProvider = getProvider(type, name);
 			
-			if (factory)
-				return factory.getInstance(this);
+			if (dependency)
+				return dependency.getInstance(type, this);
 		}
 		
 		public function set(instance:*, name:String = ""):DependencyProvider
 		{
-			var dependency:Instance = new Instance(instance);
+			var dependency:NamedInstance = new NamedInstance(instance);
 			dependency.name = name;
 			
 			setProvider(dependency);

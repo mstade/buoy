@@ -10,7 +10,7 @@ package se.stade.buoy.overrides
 		
 		public function handle(event:ContextEvent):void
 		{
-            event.context.configuration.behaviors = event.context.configuration.behaviors.concat(behaviors);
+            event.configuration.behaviors = event.configuration.behaviors.concat(behaviors);
 		}
 	}
 }

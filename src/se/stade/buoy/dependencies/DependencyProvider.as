@@ -5,6 +5,6 @@ package se.stade.buoy.dependencies
 		function get name():String;
 		function get types():Vector.<String>;
 		
-		function getInstance(container:DependencyContainer):*;
+		function getInstance(type:Class, dependencies:DependencyContainer):*;
 	}
 }

@@ -8,9 +8,9 @@ package se.stade.buoy.dependencies
 	import se.stade.daffodil.types.QualifiedType;
 
 	[DefaultProperty("value")]
-	public class Instance implements DependencyProvider
+	public class NamedInstance implements DependencyProvider
 	{
-		public function Instance(value:Object = null, properties:Vector.<Set> = null)
+		public function NamedInstance(value:Object = null, properties:Vector.<Set> = null)
 		{
             if (value)
                 this.value = value;
@@ -57,7 +57,7 @@ package se.stade.buoy.dependencies
 			}
 		}
 		
-		public function getInstance(dependencies:DependencyContainer):*
+		public function getInstance(type:Class, dependencies:DependencyContainer):*
 		{
 			if (!instance)
 				return null;
@@ -74,7 +74,7 @@ package se.stade.buoy.dependencies
 					var inject:Inject = parameter.value ? parameter.value as Inject : Inject.inferred;
 						
 					instance[property.name] = inject ?
-                        dependencies.get(inject.type || define(property.type), inject.id)
+                        dependencies.get(inject.type || define(property.type), inject.name)
                         : parameter.value;
 				}
 			}

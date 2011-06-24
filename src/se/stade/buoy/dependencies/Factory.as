@@ -5,6 +5,7 @@ package se.stade.buoy.dependencies
 	import se.stade.daffodil.methods.Method;
 	import se.stade.daffodil.types.QualifiedType;
 	
+    [DefaultProperty("properties")]
 	public class Factory implements DependencyProvider
 	{
 		public function Factory(type:Class = null, properties:Vector.<Set> = null, ... parameters)
@@ -28,8 +29,8 @@ package se.stade.buoy.dependencies
 		public function get types():Vector.<String>
 		{
             return new <String>[qualifiedType.qualifiedName]
-                                             .concat(qualifiedType.extendedTypes)
-                                             .concat(qualifiedType.implementedInterfaces);
+                        .concat(qualifiedType.extendedTypes)
+                        .concat(qualifiedType.implementedInterfaces);
 		}
 		
 		private var qualifiedType:QualifiedType;
@@ -50,8 +51,11 @@ package se.stade.buoy.dependencies
             propertyList = value;
 		}
         
-		public function getInstance(dependencies:DependencyContainer):*
+		public function getInstance(type:Class, dependencies:DependencyContainer):*
 		{
+            if (qualifiedType.definition() != type)
+                return null;
+                
 			var constructor:Method = qualifiedType.constructor;
 			var constructorParameters:Array = [];
 			
@@ -64,7 +68,7 @@ package se.stade.buoy.dependencies
                     constructorParameters.push(
                         dependencies.get(
                             inject.type || define(constructor.parameters[i].type),
-                            inject.id
+                            inject.name
                         )
                     );
                 }
@@ -75,9 +79,9 @@ package se.stade.buoy.dependencies
 			}
 			
 			var instance:* = constructor.invoke(constructorParameters);
-			var dependency:Instance = new Instance(instance, propertyList);
+			var dependency:NamedInstance = new NamedInstance(instance, propertyList);
 			
-			return dependency.getInstance(dependencies);
+			return dependency.getInstance(type, dependencies);
 		}
 	}
 }

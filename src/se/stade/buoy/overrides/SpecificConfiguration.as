@@ -12,7 +12,7 @@ package se.stade.buoy.overrides
 		
 		public function handle(event:ContextEvent):void
 		{
-			if (event.context.configuration is type)
+			if (event.configuration is type)
 			{
 				for each (var override:ContextOverride in overrides)
 				{

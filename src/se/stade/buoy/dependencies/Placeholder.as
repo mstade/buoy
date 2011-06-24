@@ -26,7 +26,7 @@ package se.stade.buoy.dependencies
             _types = value;
         }
         
-        public function getInstance(container:DependencyContainer):*
+        public function getInstance(type:Class, container:DependencyContainer):*
         {
             throw new IllegalOperationError("This is an abstract dependency that must be overwritten.");
         }
