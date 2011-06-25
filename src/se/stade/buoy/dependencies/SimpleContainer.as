@@ -13,12 +13,15 @@ package se.stade.buoy.dependencies
 	[DefaultProperty("providers")]
 	public class SimpleContainer extends EventDispatcher implements DependencyContainer
 	{
-		public function SimpleContainer(providers:Vector.<DependencyProvider> = null)
+		public function SimpleContainer(parent:DependencyContainer = null, providers:Vector.<DependencyProvider> = null)
 		{
-		    this.providers = providers; 
+		    this.providers = providers;
+            setParent(parent);
+            
+            clear();
 		}
 		
-		protected var dependencyTable:Dictionary = new Dictionary;
+		protected var dependencyTable:Dictionary;
 		
 		protected function hash(type:String, name:String = ""):String
 		{
@@ -102,5 +105,10 @@ package se.stade.buoy.dependencies
 				}
 			}
 		}
+        
+        public function clear():void
+        {
+            dependencyTable = new Dictionary(true);
+        }
 	}
 }
