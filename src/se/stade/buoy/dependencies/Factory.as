@@ -8,7 +8,7 @@ package se.stade.buoy.dependencies
     [DefaultProperty("properties")]
 	public class Factory implements DependencyProvider
 	{
-		public function Factory(type:Class = null, properties:Vector.<Set> = null, ... parameters)
+		public function Factory(type:Class = null, properties:Vector.<SetProperty> = null, ... parameters)
 		{
 			this.type = type;
 			this.properties = properties;
@@ -45,8 +45,8 @@ package se.stade.buoy.dependencies
             parameterList = value;
 		}
 		
-		private var propertyList:Vector.<Set>;
-		public function set properties(value:Vector.<Set>):void
+		private var propertyList:Vector.<SetProperty>;
+		public function set properties(value:Vector.<SetProperty>):void
 		{
             propertyList = value;
 		}

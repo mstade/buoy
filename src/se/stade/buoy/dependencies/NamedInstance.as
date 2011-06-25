@@ -10,7 +10,7 @@ package se.stade.buoy.dependencies
 	[DefaultProperty("value")]
 	public class NamedInstance implements DependencyProvider
 	{
-		public function NamedInstance(value:Object = null, properties:Vector.<Set> = null)
+		public function NamedInstance(value:Object = null, properties:Vector.<SetProperty> = null)
 		{
             if (value)
                 this.value = value;
@@ -47,13 +47,13 @@ package se.stade.buoy.dependencies
 		}
 		
 		private var injections:Dictionary = new Dictionary;
-		public function set properties(list:Vector.<Set>):void
+		public function set properties(list:Vector.<SetProperty>):void
 		{
 			injections = new Dictionary;
 			
-			for each (var parameter:Set in list)
+			for each (var parameter:SetProperty in list)
 			{
-				injections[parameter.property] = parameter;
+				injections[parameter.name] = parameter;
 			}
 		}
 		
@@ -70,7 +70,7 @@ package se.stade.buoy.dependencies
 			{
 				if (property.name in injections)
 				{
-					var parameter:Set = injections[property.name];
+					var parameter:SetProperty = injections[property.name];
 					var inject:Inject = parameter.value ? parameter.value as Inject : Inject.inferred;
 						
 					instance[property.name] = inject ?
