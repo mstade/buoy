@@ -3,11 +3,6 @@
    <component name="Connector" class="se.stade.buoy.Connector"/>
    <component name="ActivateTag" class="se.stade.buoy.connectors.metadata.ActivateTag"/>
    <component name="DeactivateTag" class="se.stade.buoy.connectors.metadata.DeactivateTag"/>
-   <component name="DeeplinkTag" class="se.stade.buoy.connectors.metadata.deeplinking.DeeplinkTag"/>
-   <component name="DeeplinkTagParameters" class="se.stade.buoy.connectors.metadata.deeplinking.DeeplinkTagParameters"/>
-   <component name="HistoryEntry" class="se.stade.buoy.connectors.metadata.deeplinking.HistoryEntry"/>
-   <component name="HTML5History" class="se.stade.buoy.connectors.metadata.deeplinking.HTML5History"/>
-   <component name="NavigationHistory" class="se.stade.buoy.connectors.metadata.deeplinking.NavigationHistory"/>
    <component name="DefaultTags" class="se.stade.buoy.connectors.metadata.DefaultTags"/>
    <component name="DisposeTag" class="se.stade.buoy.connectors.metadata.DisposeTag"/>
    <component name="DOMEventListener" class="se.stade.buoy.connectors.metadata.eventhandling.DOMEventListener"/>
