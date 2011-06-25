@@ -10,6 +10,7 @@ package se.stade.buoy.connectors.metadata
 	import se.stade.buoy.Connector;
 	import se.stade.buoy.dependencies.DependencyContainer;
 	import se.stade.flash.dom.query.FlashQuery;
+	import se.stade.buoy.connectors.metadata.eventhandling.HandleEventTag;
 	
 	[DefaultProperty("dependencies")]
 	public class DefaultTags implements Connector

@@ -3,12 +3,20 @@
    <component name="Connector" class="se.stade.buoy.Connector"/>
    <component name="ActivateTag" class="se.stade.buoy.connectors.metadata.ActivateTag"/>
    <component name="DeactivateTag" class="se.stade.buoy.connectors.metadata.DeactivateTag"/>
+   <component name="DeeplinkTag" class="se.stade.buoy.connectors.metadata.deeplinking.DeeplinkTag"/>
+   <component name="DeeplinkTagParameters" class="se.stade.buoy.connectors.metadata.deeplinking.DeeplinkTagParameters"/>
+   <component name="HistoryEntry" class="se.stade.buoy.connectors.metadata.deeplinking.HistoryEntry"/>
+   <component name="HTML5History" class="se.stade.buoy.connectors.metadata.deeplinking.HTML5History"/>
+   <component name="NavigationHistory" class="se.stade.buoy.connectors.metadata.deeplinking.NavigationHistory"/>
    <component name="DefaultTags" class="se.stade.buoy.connectors.metadata.DefaultTags"/>
    <component name="DisposeTag" class="se.stade.buoy.connectors.metadata.DisposeTag"/>
+   <component name="DOMEventListener" class="se.stade.buoy.connectors.metadata.eventhandling.DOMEventListener"/>
+   <component name="HandleEventTag" class="se.stade.buoy.connectors.metadata.eventhandling.HandleEventTag"/>
+   <component name="HandleEventTagListener" class="se.stade.buoy.connectors.metadata.eventhandling.HandleEventTagListener"/>
+   <component name="HandleEventTagParameters" class="se.stade.buoy.connectors.metadata.eventhandling.HandleEventTagParameters"/>
+   <component name="LocalEventListener" class="se.stade.buoy.connectors.metadata.eventhandling.LocalEventListener"/>
    <component name="FindTag" class="se.stade.buoy.connectors.metadata.FindTag"/>
    <component name="FindTagParameters" class="se.stade.buoy.connectors.metadata.FindTagParameters"/>
-   <component name="HandleEventTag" class="se.stade.buoy.connectors.metadata.HandleEventTag"/>
-   <component name="HandleEventTagParameters" class="se.stade.buoy.connectors.metadata.HandleEventTagParameters"/>
    <component name="InitializeTag" class="se.stade.buoy.connectors.metadata.InitializeTag"/>
    <component name="InjectTag" class="se.stade.buoy.connectors.metadata.InjectTag"/>
    <component name="InjectTagParameters" class="se.stade.buoy.connectors.metadata.InjectTagParameters"/>
@@ -20,11 +28,13 @@
    <component name="EmptyContainer" class="se.stade.buoy.dependencies.EmptyContainer"/>
    <component name="Factory" class="se.stade.buoy.dependencies.Factory"/>
    <component name="Inject" class="se.stade.buoy.dependencies.Inject"/>
+   <component name="Instances" class="se.stade.buoy.dependencies.Instances"/>
    <component name="invoke" class="se.stade.buoy.dependencies.ioc.invoke"/>
    <component name="NamedInstance" class="se.stade.buoy.dependencies.NamedInstance"/>
    <component name="Placeholder" class="se.stade.buoy.dependencies.Placeholder"/>
-   <component name="Set" class="se.stade.buoy.dependencies.Set"/>
+   <component name="SetProperty" class="se.stade.buoy.dependencies.SetProperty"/>
    <component name="SimpleContainer" class="se.stade.buoy.dependencies.SimpleContainer"/>
+   <component name="MXMLContext" class="se.stade.buoy.MXMLContext"/>
    <component name="OverrideList" class="se.stade.buoy.OverrideList"/>
    <component name="AddBehaviors" class="se.stade.buoy.overrides.AddBehaviors"/>
    <component name="AddConnectors" class="se.stade.buoy.overrides.AddConnectors"/>
@@ -37,5 +47,4 @@
    <component name="Step" class="se.stade.buoy.sequencing.Step"/>
    <component name="StepError" class="se.stade.buoy.sequencing.StepError"/>
    <component name="StepEvent" class="se.stade.buoy.sequencing.StepEvent"/>
-   <component name="MXMLContext" class="se.stade.buoy.MXMLContext"/>
 </componentPackage>
