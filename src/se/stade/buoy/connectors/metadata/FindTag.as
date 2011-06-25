@@ -38,7 +38,15 @@ package se.stade.buoy.connectors.metadata
 													      .into(FindTagParameters);
 				
 				var targets:FlashQuery = document.find(parameters.target, parameters.limit);
-                property.value = property.type == qualify(FlashQuery) ? targets : targets[0];
+                
+                if (property.type == qualify(FlashQuery))
+                {
+                    property.value = targets;
+                }
+                else
+                {
+                    property.value = targets[0];
+                }
 			}
 		}
 
