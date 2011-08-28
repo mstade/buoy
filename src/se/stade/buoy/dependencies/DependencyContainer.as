@@ -1,7 +1,5 @@
 package se.stade.buoy.dependencies
 {
-	import se.stade.colligo.Collection;
-	
 	public interface DependencyContainer
 	{
         function setParent(value:DependencyContainer):void;

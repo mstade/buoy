@@ -5,12 +5,10 @@ package se.stade.buoy.connectors.metadata
 	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
 	
-	import mx.core.UIComponent;
-	
 	import se.stade.buoy.Connector;
-	import se.stade.buoy.dependencies.DependencyContainer;
-	import se.stade.flash.dom.query.FlashQuery;
 	import se.stade.buoy.connectors.metadata.eventhandling.HandleEventTag;
+	import se.stade.buoy.dependencies.DependencyContainer;
+	import se.stade.flash.dom.FlashQuery;
 	
 	[DefaultProperty("dependencies")]
 	public class DefaultTags implements Connector
@@ -54,7 +52,7 @@ package se.stade.buoy.connectors.metadata
 			new DisposeTag()
 		];
 		
-		public function initialize(view:UIComponent, dependencies:DependencyContainer):void
+		public function initialize(view:DisplayObject, dependencies:DependencyContainer):void
 		{
             var query:FlashQuery = FlashQuery.from(view);
 			dependencies.set(query);

@@ -1,25 +1,24 @@
 package se.stade.buoy
 {
+	import flash.display.DisplayObject;
 	import flash.events.Event;
-	
-	import mx.core.UIComponent;
 	
 	public class ContextEvent extends Event
 	{
 		public static const ATTACH:String = "attachContext";
 		public static const DISPOSE:String = "disposeContext";
 		
-		public static function attach(context:Context, configuration:Configuration, view:UIComponent):ContextEvent
+		public static function attach(context:Context, configuration:Configuration, view:DisplayObject):ContextEvent
 		{
 			return new ContextEvent(ATTACH, context, configuration, view);
 		}
 		
-		public static function dispose(context:Context, configuration:Configuration, view:UIComponent):ContextEvent
+		public static function dispose(context:Context, configuration:Configuration, view:DisplayObject):ContextEvent
 		{
 			return new ContextEvent(DISPOSE, context, configuration, view);
 		}
 		
-		public function ContextEvent(type:String, context:Context, configuration:Configuration, view:UIComponent)
+		public function ContextEvent(type:String, context:Context, configuration:Configuration, view:DisplayObject)
 		{
 			super(type, type == ATTACH, type == ATTACH);
 			
@@ -40,8 +39,8 @@ package se.stade.buoy
             return _configuration;
         }
 		
-		private var _view:UIComponent;
-		public function get view():UIComponent
+		private var _view:DisplayObject;
+		public function get view():DisplayObject
 		{
 			return _view;
 		}

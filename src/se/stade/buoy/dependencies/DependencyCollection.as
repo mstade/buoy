@@ -2,18 +2,14 @@ package se.stade.buoy.dependencies
 {
 	import flash.events.EventDispatcher;
 	import flash.utils.Dictionary;
-	import flash.utils.getQualifiedClassName;
 	
-	import se.stade.colligo.iterators.Iterator;
-	import se.stade.colligo.iterators.LinearIterator;
-	import se.stade.daffodil.define;
+	import se.stade.babbla.formatting.format;
 	import se.stade.daffodil.qualify;
-	import se.stade.stilts.string.formatting.format;
 	
 	[DefaultProperty("providers")]
-	public class SimpleContainer extends EventDispatcher implements DependencyContainer
+	public class DependencyCollection extends EventDispatcher implements DependencyContainer
 	{
-		public function SimpleContainer(parent:DependencyContainer = null, providers:Vector.<DependencyProvider> = null)
+		public function DependencyCollection(parent:DependencyContainer = null, providers:Vector.<DependencyProvider> = null)
 		{
 		    this.providers = providers;
             setParent(parent);
@@ -65,7 +61,7 @@ package se.stade.buoy.dependencies
 		
 		public function set(instance:*, name:String = ""):DependencyProvider
 		{
-			var dependency:NamedInstance = new NamedInstance(instance);
+			var dependency:Instance = new Instance(instance);
 			dependency.name = name;
 			
 			setProvider(dependency);
@@ -88,7 +84,7 @@ package se.stade.buoy.dependencies
 		{
 			components = [component].concat(components);
 			
-			for each (var component:DependencyProvider in components)
+			for each (component in components)
 			{
                 var key:String = hash(null, component.name);
                 

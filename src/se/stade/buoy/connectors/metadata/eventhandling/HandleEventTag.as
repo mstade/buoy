@@ -1,22 +1,18 @@
 package se.stade.buoy.connectors.metadata.eventhandling
 {
+	import flash.display.DisplayObject;
 	import flash.utils.Dictionary;
-	
-	import mx.core.UIComponent;
 	
 	import se.stade.buoy.Connector;
 	import se.stade.buoy.connectors.metadata.MetadataTagBase;
 	import se.stade.buoy.dependencies.DependencyContainer;
 	import se.stade.daffodil.Reflect;
 	import se.stade.daffodil.methods.Method;
-	import se.stade.flash.dom.query.FlashQuery;
+	import se.stade.flash.dom.FlashQuery;
 	import se.stade.stilts.Disposable;
 	
 	public class HandleEventTag extends MetadataTagBase implements Connector
 	{
-        public static const SCOPE_THIS:String = "this";
-        public static const SCOPE_DOM:String = "dom";
-
 		public function HandleEventTag(tag:String = "HandleEvent", eventType:String = "")
 		{
 			super(tag, this);
@@ -30,7 +26,7 @@ package se.stade.buoy.connectors.metadata.eventhandling
         
 		protected var listeners:Dictionary = new Dictionary(true);
 		
-		override public function initialize(view:UIComponent, dependencies:DependencyContainer):void
+		override public function initialize(view:DisplayObject, dependencies:DependencyContainer):void
 		{
 			super.initialize(view, dependencies);
 			document = dependencies.get(FlashQuery) || FlashQuery.from(view);
@@ -56,7 +52,7 @@ package se.stade.buoy.connectors.metadata.eventhandling
                     {
                         listeners[handler] ||= new <Disposable>[];
                         
-                        if (parameters.scope.toLowerCase() == SCOPE_THIS)
+                        if (parameters.scope == EventHandlerScope.THIS)
                         {
                             listeners[handler].push(new LocalEventListener(handler, parameters, dependencies));
                         }

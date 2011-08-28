@@ -1,8 +1,7 @@
 package se.stade.buoy.connectors.metadata
 {
+	import flash.display.DisplayObject;
 	import flash.utils.Dictionary;
-	
-	import mx.core.UIComponent;
 	
 	import se.stade.buoy.Connector;
 	import se.stade.buoy.dependencies.DependencyContainer;
@@ -19,7 +18,7 @@ package se.stade.buoy.connectors.metadata
 		
 		protected var disposers:Dictionary;
 		
-		override public function initialize(view:UIComponent, dependencies:DependencyContainer):void
+		override public function initialize(view:DisplayObject, dependencies:DependencyContainer):void
 		{
 			super.initialize(view, dependencies);
 			disposers = new Dictionary(true);

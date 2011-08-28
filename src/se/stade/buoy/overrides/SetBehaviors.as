@@ -1,16 +1,16 @@
 package se.stade.buoy.overrides
 {
 	import se.stade.buoy.Configuration;
-	import se.stade.buoy.ContextEvent;
+	import se.stade.buoy.Context;
 	
 	[DefaultProperty("behaviors")]
 	public class SetBehaviors implements ContextOverride
 	{
 		public var behaviors:Array;
 		
-		public function handle(event:ContextEvent):void
+		public function applyTo(context:Context, configuration:Configuration):void
 		{
-            event.configuration.behaviors = behaviors;
+            configuration.behaviors = behaviors;
 		}
 	}
 }

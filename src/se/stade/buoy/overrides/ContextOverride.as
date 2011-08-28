@@ -1,9 +1,10 @@
 package se.stade.buoy.overrides
 {
-	import se.stade.buoy.ContextEvent;
+	import se.stade.buoy.Configuration;
+	import se.stade.buoy.Context;
 
 	public interface ContextOverride
 	{
-		function handle(event:ContextEvent):void;
+		function applyTo(context:Context, configuration:Configuration):void;
 	}
 }

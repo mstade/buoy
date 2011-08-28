@@ -1,15 +1,11 @@
 package se.stade.buoy.connectors.metadata.eventhandling
 {
-    import flash.events.Event;
-    
-    import se.stade.buoy.dependencies.DependencyContainer;
-    import se.stade.buoy.dependencies.SimpleContainer;
-    import se.stade.buoy.dependencies.ioc.invoke;
-    import se.stade.daffodil.Reflect;
-    import se.stade.daffodil.define;
-    import se.stade.daffodil.methods.Method;
-    import se.stade.daffodil.methods.Parameter;
-    import se.stade.daffodil.qualify;
+	import se.stade.buoy.dependencies.DependencyCollection;
+	import se.stade.buoy.dependencies.DependencyContainer;
+	import se.stade.buoy.dependencies.ioc.invoke;
+	import se.stade.daffodil.methods.Method;
+
+	import flash.events.Event;
 
     internal class HandleEventTagListener
     {
@@ -18,7 +14,7 @@ package se.stade.buoy.connectors.metadata.eventhandling
             this.handler = handler;
             this.parameters = parameters;
             
-            listenerDependencies = new SimpleContainer(dependencies);
+            listenerDependencies = new DependencyCollection(dependencies);
             
             this.listener = function(event:Event):void
             {
@@ -32,6 +28,6 @@ package se.stade.buoy.connectors.metadata.eventhandling
         protected var handler:Method;
         protected var listener:Function;
         protected var parameters:HandleEventTagParameters;
-        protected var listenerDependencies:SimpleContainer;
+        protected var listenerDependencies:DependencyCollection;
     }
 }

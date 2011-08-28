@@ -1,13 +1,13 @@
 package se.stade.buoy.connectors.metadata
 {
-	import mx.core.UIComponent;
+	import flash.display.DisplayObject;
 	
 	import se.stade.buoy.Connector;
 	import se.stade.buoy.dependencies.DependencyContainer;
 	import se.stade.daffodil.Reflect;
 	import se.stade.daffodil.properties.Property;
 	import se.stade.daffodil.qualify;
-	import se.stade.flash.dom.query.FlashQuery;
+	import se.stade.flash.dom.FlashQuery;
 	
 	public class FindTag extends MetadataTagBase implements Connector
 	{
@@ -18,7 +18,7 @@ package se.stade.buoy.connectors.metadata
 		
 		protected var document:FlashQuery;
 		
-		override public function initialize(view:UIComponent, dependencies:DependencyContainer):void
+		override public function initialize(view:DisplayObject, dependencies:DependencyContainer):void
 		{
 			super.initialize(view, dependencies);
 			document = dependencies.get(FlashQuery) || FlashQuery.from(view);

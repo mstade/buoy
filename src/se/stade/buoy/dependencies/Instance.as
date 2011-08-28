@@ -8,9 +8,9 @@ package se.stade.buoy.dependencies
 	import se.stade.daffodil.types.QualifiedType;
 
 	[DefaultProperty("value")]
-	public class NamedInstance implements DependencyProvider
+	public class Instance implements DependencyProvider
 	{
-		public function NamedInstance(value:Object = null, properties:Vector.<SetProperty> = null)
+		public function Instance(value:Object = null, properties:Vector.<SetProperty> = null)
 		{
             if (value)
                 this.value = value;

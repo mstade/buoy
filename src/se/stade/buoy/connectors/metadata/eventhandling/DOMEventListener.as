@@ -2,7 +2,7 @@ package se.stade.buoy.connectors.metadata.eventhandling
 {
     import se.stade.buoy.dependencies.DependencyContainer;
     import se.stade.daffodil.methods.Method;
-    import se.stade.flash.dom.query.FlashQuery;
+    import se.stade.flash.dom.FlashQuery;
     import se.stade.stilts.Disposable;
     
     internal class DOMEventListener extends HandleEventTagListener implements Disposable

@@ -79,7 +79,7 @@ package se.stade.buoy.dependencies
 			}
 			
 			var instance:* = constructor.invoke(constructorParameters);
-			var dependency:NamedInstance = new NamedInstance(instance, propertyList);
+			var dependency:Instance = new Instance(instance, propertyList);
 			
 			return dependency.getInstance(type, dependencies);
 		}

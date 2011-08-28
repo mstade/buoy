@@ -2,7 +2,6 @@ package se.stade.buoy.connectors.metadata
 {
 	import se.stade.buoy.Connector;
 	import se.stade.daffodil.Reflect;
-	import se.stade.daffodil.Reflection;
 	import se.stade.daffodil.define;
 	import se.stade.daffodil.properties.Property;
 	
@@ -13,8 +12,6 @@ package se.stade.buoy.connectors.metadata
 			super(tag, this);
 		}
         
-        private var allInjectees:Reflection;
-		
 		public function connect(behaviors:Array):void
 		{
 			var injectees:Array = Reflect.all.properties

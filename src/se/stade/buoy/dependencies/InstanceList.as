@@ -1,15 +1,13 @@
 package se.stade.buoy.dependencies
 {
-    import flash.utils.getDefinitionByName;
-
-    [DefaultProperty("list")]
-    public class Instances implements DependencyProvider
+    [DefaultProperty("instances")]
+    public class InstanceList implements DependencyProvider
     {
         private var dependencies:DependencyContainer;
         
-        public function set instanceList(value:Array):void
+        public function set instances(value:Array):void
         {
-            dependencies = new SimpleContainer;
+            dependencies = new DependencyCollection;
             
             _types = new <String>[];
             

@@ -6,6 +6,7 @@
    <component name="DefaultTags" class="se.stade.buoy.connectors.metadata.DefaultTags"/>
    <component name="DisposeTag" class="se.stade.buoy.connectors.metadata.DisposeTag"/>
    <component name="DOMEventListener" class="se.stade.buoy.connectors.metadata.eventhandling.DOMEventListener"/>
+   <component name="EventHandlerScope" class="se.stade.buoy.connectors.metadata.eventhandling.EventHandlerScope"/>
    <component name="HandleEventTag" class="se.stade.buoy.connectors.metadata.eventhandling.HandleEventTag"/>
    <component name="HandleEventTagListener" class="se.stade.buoy.connectors.metadata.eventhandling.HandleEventTagListener"/>
    <component name="HandleEventTagParameters" class="se.stade.buoy.connectors.metadata.eventhandling.HandleEventTagParameters"/>
@@ -18,19 +19,17 @@
    <component name="MetadataTagBase" class="se.stade.buoy.connectors.metadata.MetadataTagBase"/>
    <component name="Context" class="se.stade.buoy.Context"/>
    <component name="ContextEvent" class="se.stade.buoy.ContextEvent"/>
+   <component name="DependencyCollection" class="se.stade.buoy.dependencies.DependencyCollection"/>
    <component name="DependencyContainer" class="se.stade.buoy.dependencies.DependencyContainer"/>
    <component name="DependencyProvider" class="se.stade.buoy.dependencies.DependencyProvider"/>
    <component name="EmptyContainer" class="se.stade.buoy.dependencies.EmptyContainer"/>
    <component name="Factory" class="se.stade.buoy.dependencies.Factory"/>
    <component name="Inject" class="se.stade.buoy.dependencies.Inject"/>
-   <component name="Instances" class="se.stade.buoy.dependencies.Instances"/>
+   <component name="Instance" class="se.stade.buoy.dependencies.Instance"/>
+   <component name="InstanceList" class="se.stade.buoy.dependencies.InstanceList"/>
    <component name="invoke" class="se.stade.buoy.dependencies.ioc.invoke"/>
-   <component name="NamedInstance" class="se.stade.buoy.dependencies.NamedInstance"/>
    <component name="Placeholder" class="se.stade.buoy.dependencies.Placeholder"/>
    <component name="SetProperty" class="se.stade.buoy.dependencies.SetProperty"/>
-   <component name="SimpleContainer" class="se.stade.buoy.dependencies.SimpleContainer"/>
-   <component name="MXMLContext" class="se.stade.buoy.MXMLContext"/>
-   <component name="OverrideList" class="se.stade.buoy.OverrideList"/>
    <component name="AddBehaviors" class="se.stade.buoy.overrides.AddBehaviors"/>
    <component name="AddConnectors" class="se.stade.buoy.overrides.AddConnectors"/>
    <component name="ContextOverride" class="se.stade.buoy.overrides.ContextOverride"/>
@@ -38,8 +37,6 @@
    <component name="SetConnectors" class="se.stade.buoy.overrides.SetConnectors"/>
    <component name="SetDependencies" class="se.stade.buoy.overrides.SetDependencies"/>
    <component name="SpecificConfiguration" class="se.stade.buoy.overrides.SpecificConfiguration"/>
-   <component name="Sequence" class="se.stade.buoy.sequencing.Sequence"/>
-   <component name="Step" class="se.stade.buoy.sequencing.Step"/>
-   <component name="StepError" class="se.stade.buoy.sequencing.StepError"/>
-   <component name="StepEvent" class="se.stade.buoy.sequencing.StepEvent"/>
+   <component name="SimpleConfiguration" class="se.stade.buoy.SimpleConfiguration"/>
+   <component name="ViewContext" class="se.stade.buoy.ViewContext"/>
 </componentPackage>

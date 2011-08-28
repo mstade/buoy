@@ -1,9 +1,9 @@
 package se.stade.buoy.connectors.metadata
 {
-	import mx.core.UIComponent;
+	import flash.display.DisplayObject;
 	
-	import se.stade.stilts.errors.AbstractTypeError;
 	import se.stade.buoy.dependencies.DependencyContainer;
+	import se.stade.stilts.errors.AbstractTypeError;
 
 	public class MetadataTagBase
 	{
@@ -28,7 +28,7 @@ package se.stade.buoy.connectors.metadata
 		
 		protected var dependencies:DependencyContainer;
 		
-		public function initialize(view:UIComponent, dependencies:DependencyContainer):void
+		public function initialize(view:DisplayObject, dependencies:DependencyContainer):void
 		{
 			this.dependencies = dependencies;
 		}

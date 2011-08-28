@@ -1,26 +1,60 @@
 package se.stade.buoy.connectors.metadata.eventhandling
 {
-    import flash.events.Event;
-    import flash.events.IEventDispatcher;
-    
-    import mx.binding.utils.BindingUtils;
-    import mx.binding.utils.ChangeWatcher;
-    
-    import se.stade.buoy.dependencies.DependencyContainer;
-    import se.stade.daffodil.methods.Method;
-    import se.stade.stilts.Disposable;
+	import flash.events.IEventDispatcher;
+	import flash.utils.getDefinitionByName;
+	
+	import se.stade.buoy.dependencies.DependencyContainer;
+	import se.stade.daffodil.methods.Method;
+	import se.stade.stilts.Disposable;
 
     internal class LocalEventListener extends HandleEventTagListener implements Disposable
     {
+        private static var Binding:Object;
+        {
+            try
+            {
+                Binding = getDefinitionByName("mx.binding.utils.BindingUtils");
+            }
+            catch (e:Error)
+            {
+                // This means we ain't running no flex-y stuff, thus we can't bind (right now)
+            }
+        }
+        
         public function LocalEventListener(handler:Method, parameters:HandleEventTagParameters, dependencies:DependencyContainer)
         {
             super(handler, parameters, dependencies);
             
             var chain:Array = parameters.target.split(".");
-            watcher = BindingUtils.bindProperty(this, "currentTarget", handler.owner, chain, false, true);
+            
+            if (Binding)
+            {
+                watcher = Binding.bindProperty(this, "currentTarget", handler.owner, chain, false, true);
+            }
+            else
+            {
+                var owner:Object = handler.owner;
+                
+                while (chain.length > 1 && owner)
+                {
+                    var property:String = chain.shift();
+                    
+                    if (property in owner)
+                    {
+                        owner = owner[property];
+                    }
+                }
+                
+                property = chain[0];
+                
+                if (owner && property in owner)
+                {
+                    currentTarget = owner[property];
+                }
+            }
         }
         
-        private var watcher:ChangeWatcher;
+        private var watcher:Object;
         
         private var _currentTarget:IEventDispatcher
         public function set currentTarget(value:Object):void
@@ -43,7 +77,10 @@ package se.stade.buoy.connectors.metadata.eventhandling
             if (_currentTarget)
                 _currentTarget.removeEventListener(parameters.type, listener, parameters.useCapture);
             
-            watcher.unwatch();
+            if (watcher)
+            {
+                watcher["unwatch"]();
+            }
         }
     }
 }
