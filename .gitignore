@@ -9,3 +9,4 @@ bin/
 .do_built
 .do_built.dir
 .fxpProperties
+src/manifest.xml
