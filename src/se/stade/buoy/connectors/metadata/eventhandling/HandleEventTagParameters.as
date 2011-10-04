@@ -1,10 +1,10 @@
 package se.stade.buoy.connectors.metadata.eventhandling
 {
-	public final class HandleEventTagParameters
-	{
+    public final class HandleEventTagParameters
+    {
         private var _target:String
         
-		[DefaultProperty]
+        [DefaultProperty]
         public function get target():String
         {
             return _target;
@@ -27,10 +27,10 @@ package se.stade.buoy.connectors.metadata.eventhandling
             return _scope;
         }
         
-		public var type:String;
+        public var type:String;
         public var live:Boolean;
-		public var priority:int;
-		public var useCapture:Boolean;
-		public var useWeakReference:Boolean;
-	}
+        public var priority:int;
+        public var useCapture:Boolean;
+        public var useWeakReference:Boolean;
+    }
 }

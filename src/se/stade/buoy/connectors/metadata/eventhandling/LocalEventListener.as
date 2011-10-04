@@ -1,11 +1,11 @@
 package se.stade.buoy.connectors.metadata.eventhandling
 {
-	import flash.events.IEventDispatcher;
-	import flash.utils.getDefinitionByName;
-	
-	import se.stade.buoy.dependencies.DependencyContainer;
-	import se.stade.daffodil.methods.Method;
-	import se.stade.stilts.Disposable;
+    import flash.events.IEventDispatcher;
+    import flash.utils.getDefinitionByName;
+    
+    import se.stade.buoy.dependencies.DependencyContainer;
+    import se.stade.daffodil.methods.Method;
+    import se.stade.stilts.Disposable;
 
     internal class LocalEventListener extends HandleEventTagListener implements Disposable
     {

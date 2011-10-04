@@ -1,11 +1,11 @@
 package se.stade.buoy.connectors.metadata.eventhandling
 {
-	import se.stade.buoy.dependencies.DependencyCollection;
-	import se.stade.buoy.dependencies.DependencyContainer;
-	import se.stade.buoy.dependencies.ioc.invoke;
-	import se.stade.daffodil.methods.Method;
+    import se.stade.buoy.dependencies.DependencyCollection;
+    import se.stade.buoy.dependencies.DependencyContainer;
+    import se.stade.buoy.dependencies.ioc.invoke;
+    import se.stade.daffodil.methods.Method;
 
-	import flash.events.Event;
+    import flash.events.Event;
 
     internal class HandleEventTagListener
     {
