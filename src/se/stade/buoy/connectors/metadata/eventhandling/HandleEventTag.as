@@ -54,11 +54,16 @@ package se.stade.buoy.connectors.metadata.eventhandling
                         
                         if (parameters.scope == EventHandlerScope.THIS)
                         {
-                            listeners[handler].push(new LocalEventListener(handler, parameters, dependencies));
+                            listeners[handler].push(new LocalEventListener(handler,
+                                                                           parameters,
+                                                                           dependencies));
                         }
                         else
                         {
-                            listeners[handler].push(new DOMEventListener(document, handler, parameters, dependencies));
+                            listeners[handler].push(new DOMEventListener(document,
+                                                                         handler,
+                                                                         parameters,
+                                                                         dependencies));
                         }
                     }
                 }

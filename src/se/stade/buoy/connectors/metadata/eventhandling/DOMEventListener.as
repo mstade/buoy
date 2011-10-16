@@ -7,18 +7,21 @@ package se.stade.buoy.connectors.metadata.eventhandling
     
     internal class DOMEventListener extends HandleEventTagListener implements Disposable
     {
-        public function DOMEventListener(document:FlashQuery, handler:Method, parameters:HandleEventTagParameters, dependencies:DependencyContainer)
+        public function DOMEventListener(document:FlashQuery,
+                                         handler:Method,
+                                         parameters:HandleEventTagParameters,
+                                         dependencies:DependencyContainer)
         {
             super(handler, parameters, dependencies);
             
             target = document.find(parameters.target);
-            target.live = parameters.live;
+            parameters.live && target.subscribe();
             
             target.addEventListener(parameters.type,
                                     listener,
-                                    parameters.useCapture,
+                                    parameters.capture,
                                     parameters.priority,
-                                    parameters.useWeakReference);
+                                    parameters.weak);
         }
         
         private var target:FlashQuery;

@@ -9,6 +9,7 @@ package se.stade.buoy.connectors.metadata
     import se.stade.daffodil.qualify;
     import se.stade.flash.dom.DisplayNode;
     import se.stade.flash.dom.FlashQuery;
+    import se.stade.flash.dom.querying.QueryLimit;
     import se.stade.flash.dom.querying.limits.MatchLimit;
     
     public class FindTag extends MetadataTagBase implements Connector
@@ -39,10 +40,12 @@ package se.stade.buoy.connectors.metadata
                                                           .on(property)
                                                           .into(FindTagParameters);
                 
-                var targets:FlashQuery = document.find(parameters.target, MatchLimit.of(parameters.limit));
+                var limit:QueryLimit = MatchLimit.of(parameters.limit);
+                var targets:FlashQuery = document.find(parameters.target, limit);
                 
                 if (property.type == qualify(FlashQuery))
                 {
+                    parameters.live && targets.subscribe();
                     property.value = targets;
                 }
                 else

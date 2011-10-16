@@ -9,7 +9,9 @@ package se.stade.buoy.connectors.metadata.eventhandling
 
     internal class HandleEventTagListener
     {
-        public function HandleEventTagListener(handler:Method, parameters:HandleEventTagParameters, dependencies:DependencyContainer)
+        public function HandleEventTagListener(handler:Method,
+                                               parameters:HandleEventTagParameters,
+                                               dependencies:DependencyContainer)
         {
             this.handler = handler;
             this.parameters = parameters;

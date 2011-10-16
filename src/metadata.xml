@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotations version="1.0">
+
+    <!--  Lifecycle tags -->
+    <metadata name="Init" description="Call a method when the behavior is initialized">
+        <context name="method" />
+    </metadata>
+    
+    <metadata name="Activate" description="Call a method when the behavior is activated">
+        <context name="method" />
+    </metadata>
+    
+    <metadata name="Deactivate" description="Call a method when the behavior is deactivated">
+        <context name="method" />
+    </metadata>
+
+    <metadata name="Dispose" description="Call a method when the behavior is disposed">
+        <context name="method" />
+    </metadata>
+
+    <!--  Various injection tags -->
+    <metadata name="Inject" description="Inject a dependency">
+        <context name="variable">
+            <attribute name="id" type="String" required="false" />
+            <attribute name="type" type="String" required="false" />
+        </context>
+        <context name="getter">
+            <attribute name="id" type="String" required="false" />
+            <attribute name="type" type="String" required="false" />
+        </context>
+        <context name="setter">
+            <attribute name="id" type="String" required="false" />
+            <attribute name="type" type="String" required="false" />
+        </context>
+    </metadata>
+    
+    <metadata name="Find" description="Find on or more nodes in the display list">
+        <context name="variable">
+            <attribute name="target" type="String" required="true" />
+            <attribute name="limit" type="uint" required="false" />
+            <attribute name="live" type="Boolean" required="false" />
+        </context>
+        <context name="getter">
+            <attribute name="target" type="String" required="true" />
+            <attribute name="limit" type="uint" required="false" />
+            <attribute name="live" type="Boolean" required="false" />
+        </context>
+        <context name="setter">
+            <attribute name="target" type="String" required="true" />
+            <attribute name="limit" type="uint" required="false" />
+            <attribute name="live" type="Boolean" required="false" />
+        </context>
+    </metadata>
+    
+    <!-- Event handling tags -->
+    <metadata name="HandleEvent" description="Defines an event handler">
+        <context name="method">
+            <attribute name="target" type="String" required="true" />
+            <attribute name="type" type="String" required="true" />
+            <attribute name="live" type="Boolean" required="false" />
+            <attribute name="capture" type="Boolean" required="false" />
+            <attribute name="priority" type="uint" required="false" />
+            <attribute name="weak" type="Boolean" required="false" />
+        </context>
+    </metadata>
+    
+    <metadata name="Change" description="Defines a change event handler">
+        <context name="method">
+            <attribute name="target" type="String" required="true" />
+            <attribute name="live" type="Boolean" required="false" />
+            <attribute name="capture" type="Boolean" required="false" />
+            <attribute name="priority" type="uint" required="false" />
+            <attribute name="weak" type="Boolean" required="false" />
+        </context>
+    </metadata>
+    
+    <metadata name="Click" description="Defines a click event handler">
+        <context name="method">
+            <attribute name="target" type="String" required="true" />
+            <attribute name="live" type="Boolean" required="false" />
+            <attribute name="capture" type="Boolean" required="false" />
+            <attribute name="priority" type="uint" required="false" />
+            <attribute name="weak" type="Boolean" required="false" />
+        </context>
+    </metadata>
+    
+    <metadata name="DoubleClick" description="Defines a double click event handler">
+        <context name="method">
+            <attribute name="target" type="String" required="true" />
+            <attribute name="live" type="Boolean" required="false" />
+            <attribute name="capture" type="Boolean" required="false" />
+            <attribute name="priority" type="uint" required="false" />
+            <attribute name="weak" type="Boolean" required="false" />
+        </context>
+    </metadata>
+    
+    <metadata name="MouseOut" description="Defines a mouse out event handler">
+        <context name="method">
+            <attribute name="target" type="String" required="true" />
+            <attribute name="live" type="Boolean" required="false" />
+            <attribute name="capture" type="Boolean" required="false" />
+            <attribute name="priority" type="uint" required="false" />
+            <attribute name="weak" type="Boolean" required="false" />
+        </context>
+    </metadata>
+    
+    <metadata name="MouseOver" description="Defines a mouse over event handler">
+        <context name="method">
+            <attribute name="target" type="String" required="true" />
+            <attribute name="live" type="Boolean" required="false" />
+            <attribute name="capture" type="Boolean" required="false" />
+            <attribute name="priority" type="uint" required="false" />
+            <attribute name="weak" type="Boolean" required="false" />
+        </context>
+    </metadata>
+    
+    <metadata name="MouseMove" description="Defines a mouse move event handler">
+        <context name="method">
+            <attribute name="target" type="String" required="true" />
+            <attribute name="live" type="Boolean" required="false" />
+            <attribute name="capture" type="Boolean" required="false" />
+            <attribute name="priority" type="uint" required="false" />
+            <attribute name="weak" type="Boolean" required="false" />
+        </context>
+    </metadata>
+    
+    <metadata name="MouseUp" description="Defines a mouse up event handler">
+        <context name="method">
+            <attribute name="target" type="String" required="true" />
+            <attribute name="live" type="Boolean" required="false" />
+            <attribute name="capture" type="Boolean" required="false" />
+            <attribute name="priority" type="uint" required="false" />
+            <attribute name="weak" type="Boolean" required="false" />
+        </context>
+    </metadata>
+    
+    <metadata name="MouseDown" description="Defines a mouse down event handler">
+        <context name="method">
+            <attribute name="target" type="String" required="true" />
+            <attribute name="live" type="Boolean" required="false" />
+            <attribute name="capture" type="Boolean" required="false" />
+            <attribute name="priority" type="uint" required="false" />
+            <attribute name="weak" type="Boolean" required="false" />
+        </context>
+    </metadata>
+    
+    <metadata name="MouseWheel" description="Defines a mouse wheel event handler">
+        <context name="method">
+            <attribute name="target" type="String" required="true" />
+            <attribute name="live" type="Boolean" required="false" />
+            <attribute name="capture" type="Boolean" required="false" />
+            <attribute name="priority" type="uint" required="false" />
+            <attribute name="weak" type="Boolean" required="false" />
+        </context>
+    </metadata>
+    
+    <metadata name="RollOut" description="Defines a roll out event handler">
+        <context name="method">
+            <attribute name="target" type="String" required="true" />
+            <attribute name="live" type="Boolean" required="false" />
+            <attribute name="capture" type="Boolean" required="false" />
+            <attribute name="priority" type="uint" required="false" />
+            <attribute name="weak" type="Boolean" required="false" />
+        </context>
+    </metadata>
+    
+    <metadata name="RollOver" description="Defines a roll over event handler">
+        <context name="method">
+            <attribute name="target" type="String" required="true" />
+            <attribute name="live" type="Boolean" required="false" />
+            <attribute name="capture" type="Boolean" required="false" />
+            <attribute name="priority" type="uint" required="false" />
+            <attribute name="weak" type="Boolean" required="false" />
+        </context>
+    </metadata>
+    
+    <metadata name="KeyUp" description="Defines a key up event handler">
+        <context name="method">
+            <attribute name="target" type="String" required="true" />
+            <attribute name="live" type="Boolean" required="false" />
+            <attribute name="capture" type="Boolean" required="false" />
+            <attribute name="priority" type="uint" required="false" />
+            <attribute name="weak" type="Boolean" required="false" />
+        </context>
+    </metadata>
+    
+    <metadata name="KeyDown" description="Defines a key down event handler">
+        <context name="method">
+            <attribute name="target" type="String" required="true" />
+            <attribute name="live" type="Boolean" required="false" />
+            <attribute name="capture" type="Boolean" required="false" />
+            <attribute name="priority" type="uint" required="false" />
+            <attribute name="weak" type="Boolean" required="false" />
+        </context>
+    </metadata>
+
+</annotations>
+

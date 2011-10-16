@@ -60,22 +60,26 @@ package se.stade.buoy.connectors.metadata.eventhandling
         public function set currentTarget(value:Object):void
         {
             if (_currentTarget)
-                _currentTarget.removeEventListener(parameters.type, listener, parameters.useCapture);
+                _currentTarget.removeEventListener(parameters.type,
+                                                   listener,
+                                                   parameters.capture);
             
             _currentTarget = value as IEventDispatcher;
             
             if (_currentTarget)
                 _currentTarget.addEventListener(parameters.type,
                                                 listener,
-                                                parameters.useCapture,
+                                                parameters.capture,
                                                 parameters.priority,
-                                                parameters.useWeakReference);
+                                                parameters.weak);
         }
         
         public function dispose():void
         {
             if (_currentTarget)
-                _currentTarget.removeEventListener(parameters.type, listener, parameters.useCapture);
+                _currentTarget.removeEventListener(parameters.type,
+                                                   listener,
+                                                   parameters.capture);
             
             if (watcher)
             {
